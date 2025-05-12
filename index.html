@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zhiyu Yang - Personal Homepage</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            width: 80%;
+            max-width: 960px;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding: 1rem 0;
+            text-align: center;
+            border-bottom: #0779e4 3px solid;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        header p {
+            margin: 5px 0;
+        }
+        header a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        header a:hover {
+            color: #0779e4;
+        }
+        h2 {
+            color: #333;
+            border-bottom: 2px solid #0779e4;
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #555;
+            margin-bottom: 5px;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .section ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+        .section li {
+            margin-bottom: 10px;
+        }
+        .publication, .experience-item, .project-item {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #ddd;
+        }
+        .publication:last-child, .experience-item:last-child, .project-item:last-child {
+            border-bottom: none;
+        }
+        .publication .title {
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        .publication .authors {
+            font-style: italic;
+            margin-bottom: 5px;
+        }
+        .publication .venue {
+            font-size: 0.9em;
+            color: #666;
+        }
+        .publication .links a, .project-item .links a {
+            margin-right: 10px;
+            text-decoration: none;
+            color: #0779e4;
+        }
+        .publication .links a:hover, .project-item .links a:hover {
+            text-decoration: underline;
+        }
+        .gpa {
+            font-size: 0.9em;
+            color: #777;
+        }
+        .skills-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .skills-list li {
+            background: #e2e2e2;
+            color: #333;
+            padding: 5px 10px;
+            margin-bottom: 5px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-right: 5px;
+        }
+        .highlight-author {
+            font-weight: bold;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #333;
+            color: #fff;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Zhiyu Yang</h1>
+        <p>
+            <a href="mailto:kelvin.yangzhiyu@outlook.com">kelvin.yangzhiyu@outlook.com</a> |
+            Chengdu, China
+        </p>
+        <p>
+            <a href="https://github.com/KevinCL16" target="_blank">GitHub</a> |
+            <a href="https://scholar.google.com/citations?user=KLbbYf0AAAAJ" target="_blank">Google Scholar</a> 
+            <!-- Replace your_google_scholar_id with your actual ID -->
+        </p>
+    </header>
+
+    <div class="container">
+        <section id="about" class="section">
+            <h2>About Me</h2>
+            <p>
+                Ph.D. student at the University of Texas, Dallas, with a strong interest in Large Language Models,
+                Data Science, Code Debugging, Scientific Data Visualization, and Multilingual NLP.
+                Experienced in developing benchmarks, LLM-based agents, and knowledge distillation techniques.
+                <!-- You can expand this section with a brief research statement or interests -->
+            </p>
+        </section>
+
+        <section id="education" class="section">
+            <h2>Education</h2>
+            <div>
+                <h3>Ph.D. Computer Science</h3>
+                <p>University of Texas, Dallas | 2025.08 - expected</p>
+            </div>
+            <div>
+                <h3>M.Eng. Computer Science and Technology</h3>
+                <p>Beijing Language and Culture University | 2021.09 - 2024.07</p>
+                <p class="gpa">GPA: 3.67/4</p>
+            </div>
+            <div>
+                <h3>B.Eng. Computer Science and Technology</h3>
+                <p>Sichuan University | 2017.09 - 2021.07</p>
+                <p class="gpa">GPA: 3.41/4, GPA (last 60 credit hours): 3.64/4</p>
+            </div>
+        </section>
+
+        <section id="publications" class="section">
+            <h2>Research Publications</h2>
+            
+            <div class="publication">
+                <p class="title">Why Stop at One Error? Benchmarking LLMs as Data Science Code Debuggers for Multi-Hop and Multi-Bug Errors</p>
+                <p class="authors">First Author: <span class="highlight-author">Zhiyu Yang</span>, Shuo Wang, Yukun Yan, Yang Deng.</p>
+                <p class="venue">Preprint</p>
+                <p class="links">
+                    <a href="https://arxiv.org/abs/2503.22388" target="_blank">Arxiv Link</a> 
+                    <!-- Replace with actual Arxiv ID -->
+                </p>
+                <ul>
+                    <li>Introduced DSDBench, the first benchmark for evaluating LLMs on multi-hop error tracing and multi-bug detection in data science code, featuring 1,117 annotated samples.</li>
+                    <li>Developed an automated error injection and annotation framework for scalable benchmark creation.</li>
+                    <li>Designed the DSDBench dataset construction pipeline, implemented the framework, and conducted experiments revealing LLM performance gaps.</li>
+                </ul>
+            </div>
+
+            <div class="publication">
+                <p class="title">MatPlotAgent: Method and Evaluation for LLM-Based Agentic Scientific Data Visualization</p>
+                <p class="authors">First Author: <span class="highlight-author">Zhiyu Yang</span>, Zihan Zhou, Shuo Wang*, Xin Cong, Xu Han, Yukun Yan, Zhenghao Liu, Zhixing Tan, Pengyuan Liu, Dong Yu, Zhiyuan Liu*, Xiaodong Shi, Maosong Sun.</p>
+                <p class="venue">ACL 2024 Findings</p>
+                <p class="links">
+                     <a href="https://arxiv.org/abs/2402.11453" target="_blank">Arxiv Link</a> 
+                     <!-- Replace with actual Arxiv ID -->
+                     <!-- Add ACL Anthology link when available -->
+                </p>
+                <ul>
+                    <li>Introduced MatPlotBench, a benchmark for automatic quantitative evaluation of AI methods for scientific data visualization.</li>
+                    <li>Proposed MatPlotAgent, an effective and generalizable LLM agent framework using visual feedback.</li>
+                    <li>Designed MatPlotAgent framework, automatic evaluation method, conducted experiments, and curated 75 data examples for MatPlotBench.</li>
+                </ul>
+            </div>
+
+            <div class="publication">
+                <p class="title">UltraLink: An Open-Source Knowledge-Enhanced Multilingual Supervised Fine-tuning Dataset</p>
+                <p class="authors">Haoyu Wang, Shuo Wang, Yukun Yan, Xujia Wang, <span class="highlight-author">Zhiyu Yang</span> (Fifth Author), Yuzhuang Xu, Zhenghao Liu, Liner Yang, Ning Ding, Xu Han, Zhiyuan Liu*, Maosong Sun*.</p>
+                <p class="venue">ACL 2024 Main</p>
+                 <p class="links">
+                    <a href="https://arxiv.org/abs/2402.04588" target="_blank">Arxiv Link</a>
+                    <!-- Replace with actual Arxiv ID -->
+                    <!-- Add ACL Anthology link when available -->
+                </p>
+                <ul>
+                    <li>Proposed a multilingual SFT dataset with language-specific and language-agnostic subsets.</li>
+                    <li>Leveraged Wikipedia for language-specific dialogues and translated English data.</li>
+                    <li>Transferred language-agnostic knowledge for better multilingual downstream performance.</li>
+                    <li>Contributed to concretizing the paper's idea, designing initial prompt templates, and revising parts of the paper.</li>
+                </ul>
+            </div>
+
+            <div class="publication">
+                <p class="title">Enhancing Free-Form Table Question Answering Models by Distilling Relevant-Cell-Based Rationales</p>
+                <p class="authors">First Author: <span class="highlight-author">Zhiyu Yang</span>, Shuo Wang, Yukun Yan, Pengyuan Liu*, Dong Yu.</p>
+                <p class="venue">CCL 2024 poster</p>
+                <p class="links">
+                    <a href="https://aclanthology.org/2024.ccl-1.75/" target="_blank">ACL Anthology Link</a>
+                    <!-- Add ACL Anthology link when available -->
+                </p>
+                <ul>
+                    <li>Developed a knowledge distillation method for Free-form Table Question Answering, focusing on relevant table cells.</li>
+                    <li>Achieved new SOTA results on the FeTaQA benchmark.</li>
+                    <li>Conceived Relevant-Cell-based Knowledge Distillation, conducted experiments, and wrote the paper while renting GPUs.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="experience" class="section">
+            <h2>Research Experience</h2>
+            <div class="experience-item">
+                <h3>Research Assistant</h3>
+                <p>Singapore Management University | 2024.9 - 2025.3</p>
+                <p><em>Supervised by Prof. Yang Deng.</em></p>
+                <ul>
+                    <li>Developing benchmarks for testing LLMs' capabilities on identifying and reproducing debugger information for multiple and multi-hop logical errors in data analysis code. (ACL 2025 under review).</li>
+                </ul>
+            </div>
+            <div class="experience-item">
+                <h3>Research Intern</h3>
+                <p>ModelBest Co., Ltd. & OpenBMB | 2024.04 - 2024.7</p>
+                <ul>
+                    <li>Worked on devising an agent framework (LLM×MapReduce) for processing long context inputs.</li>
+                    <li>Served as a team leader, devising research plans, guiding interns, and collaborating with senior interns.</li>
+                </ul>
+            </div>
+            <div class="experience-item">
+                <h3>Research Intern</h3>
+                <p>THUNLP, Tsinghua University | 2023.4 - 2024.7</p>
+                <p><em>Closely advised by Dr. Shuo Wang.</em></p>
+                <ul>
+                    <li>Devised an LLM agent (MatPlotAgent) using code and visual feedback for scientific visualizations.</li>
+                    <li>Worked on multilingual SFT data (UltraLink) for LLM.</li>
+                    <li>Served as a project leader, devising research plans, and guiding co-authors.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="projects" class="section">
+            <h2>Projects</h2>
+            <div class="project-item">
+                <h3>CCL 2024 System Demonstration</h3>
+                <p>Year: 2024</p>
+                <ul>
+                    <li>Invited by CCL 2024 demo track chair to present ACL 2024 paper, MatPlotAgent.</li>
+                    <li>Developed a live web demo using Flask, HTML, and CSS.</li>
+                    <li>Demonstrated MatPlotAgent's workflow and performance.</li>
+                </ul>
+            </div>
+            <div class="project-item">
+                <h3>SemEval 2022 Task 7</h3>
+                <p>Year: 2021 | Rank: 9</p>
+                <ul>
+                    <li>Explored pre-trained language models for understanding plausibility of implicit and underspecified texts.</li>
+                    <li>Fine-tuned Facebook AI's MUPPET model for best performance.</li>
+                </ul>
+            </div>
+            <div class="project-item">
+                <h3>Garbage Image Classification Based on Deep Neural Networks</h3>
+                <p>Undergraduate Thesis | Year: 2021</p>
+                <ul>
+                    <li>Proposed a novel image classification deep neural network architecture.</li>
+                    <li>Surpassed mainstream models' performance on a Huawei Cloud Competition garbage classification dataset.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="skills" class="section">
+            <h2>Skills</h2>
+            <h3>Languages</h3>
+            <ul class="skills-list">
+                <li>Mandarin (Native)</li>
+                <li>English (Fluent, IELTS Overall 8.0: R:9, L:9, W:7.5, S:7)</li>
+            </ul>
+            <h3>Programming Languages</h3>
+            <ul class="skills-list">
+                <li>Python</li>
+                <li>C++</li>
+                <li>Java</li>
+            </ul>
+            <h3>Tools</h3>
+            <ul class="skills-list">
+                <li>PyTorch</li>
+                <li>Huggingface</li>
+                <li>PyG</li>
+                <li>Keras</li>
+                <li>TensorFlow 2</li>
+                <li>Linux</li>
+                <li>Android Studio</li>
+                <li>vllm</li>
+                <li>LangChain</li>
+                <li>Matplotlib</li>
+                <li>Numpy</li>
+                <li>Pandas</li>
+            </ul>
+            <h3>Deep Learning</h3>
+            <ul class="skills-list">
+                <li>Convolutional Neural Networks</li>
+                <li>Pre-trained NLU models</li>
+                <li>Pre-trained NLG models</li>
+                <li>LLMs</li>
+            </ul>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>© 2024 Zhiyu Yang. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
