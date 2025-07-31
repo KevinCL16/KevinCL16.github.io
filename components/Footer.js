@@ -6,7 +6,7 @@ function Footer() {
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="text-center md:text-left">
               <p className="text-gray-300">
-                © 2024 Zhiyu Yang. All rights reserved.
+                © 2025 Zhiyu Yang. All rights reserved.
               </p>
               <p className="text-gray-400 text-sm mt-1">
                 Ph.D. Student in Computer Science
@@ -25,7 +25,7 @@ function Footer() {
           
           <div className="border-t border-gray-700 mt-6 pt-6 text-center">
             <p className="text-gray-400 text-sm">
-              Last updated: January 2025 | Built with modern web technologies
+              Last updated: July 2025 | Built with modern web technologies
             </p>
           </div>
         </div>
