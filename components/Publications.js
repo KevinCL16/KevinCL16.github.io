@@ -5,7 +5,7 @@ function Publications() {
         title: "Why Stop at One Error? Benchmarking LLMs as Data Science Code Debuggers for Multi-Hop and Multi-Bug Errors",
         authors: "Zhiyu Yang, Shuo Wang, Yukun Yan, Yang Deng",
         venue: "Preprint (First Author)",
-        year: "2024",
+        year: "2025",
         type: "Preprint",
         link: "https://arxiv.org/abs/2503.22388",
         summary: "Introduced DSDBench, a challenging benchmark built via an automated framework to test LLMs on realistic data science code with multiple, multi-hop bugs. Our findings reveal that even top models struggle to trace error origins and achieve complete bug detection, exposing a critical gap in their reasoning and debugging capabilities."
