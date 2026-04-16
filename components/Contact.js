@@ -21,7 +21,7 @@ function Contact() {
                 <ul className="content-list">
                   <li><a href="https://github.com/KevinCL16">GitHub</a></li>
                   <li><a href="https://scholar.google.com/citations?user=KLbbYf0AAAAJ&hl=en">Google Scholar</a></li>
-                  <li><a href="https://www.linkedin.com/in/zhiyu-yang-81b9961aa/">Homepage</a></li>
+                  <li><a href="https://www.linkedin.com/in/zhiyu-yang-81b9961aa/">LinkedIn</a></li>
                 </ul>
               </div>
             </div>

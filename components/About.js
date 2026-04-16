@@ -21,7 +21,8 @@ function About() {
                 <h3 className="text-xl font-semibold text-[var(--text-primary)] mb-4">Biography</h3>
                 <div className="space-y-4 text-[var(--text-secondary)]">
                   <p>
-                    I am a Ph.D. student in Computer Science at the University of Texas at Dallas.
+                    I am a Ph.D. student in Computer Science at the University of Texas at Dallas,
+                    advised by Prof. Jessica Ouyang.
                     My research focuses on large language models and their applications in coding,
                     multimodality, long-context modeling, and agent systems.
                   </p>
@@ -52,7 +53,7 @@ function About() {
               <div className="academic-card mb-6">
                 <h3 className="text-xl font-semibold text-[var(--text-primary)] mb-4">Education</h3>
                 <ul className="content-list">
-                  <li><strong>2025.09 - Present</strong>, Ph.D. in Computer Science, University of Texas at Dallas.</li>
+                  <li><strong>2025.09 - Present</strong>, Ph.D. in Computer Science, University of Texas at Dallas, advised by Prof. Jessica Ouyang.</li>
                   <li><strong>2021.09 - 2024.07</strong>, M.Eng. in Computer Science and Technology, Beijing Language and Culture University.</li>
                   <li><strong>2017.09 - 2021.07</strong>, B.Eng. in Computer Science and Technology, Sichuan University.</li>
                 </ul>
@@ -61,7 +62,7 @@ function About() {
               <div className="academic-card">
                 <h3 className="text-xl font-semibold text-[var(--text-primary)] mb-4">Academic Services &amp; Projects</h3>
                 <ul className="content-list">
-                  <li><strong>ACL ARR Reviewer</strong>, 2024 - 2025. Emergency reviewer for October; reviewer for February and May.</li>
+                  <li><strong>ACL ARR Reviewer</strong>, 2024 - present. Invited by ACL ARR 2024 October for emergency reviewing and currently serving as a regular reviewer.</li>
                   <li><strong>CCL 2024 System Demonstration</strong>. Presented MatPlotAgent and developed a live web demo using Flask, HTML, and CSS.</li>
                 </ul>
               </div>

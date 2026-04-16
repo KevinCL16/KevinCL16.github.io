@@ -12,7 +12,10 @@ function Hero() {
                 Ph.D. Student, University of Texas at Dallas
               </h2>
               <p className="text-lg text-[var(--text-secondary)] mb-4 leading-relaxed">
-                I am a Ph.D. student in Computer Science at the University of Texas at Dallas. Previously, I worked as a
+                I am a Ph.D. student in Computer Science at the University of Texas at Dallas, advised by
+                {" "}
+                <a href="https://personal.utdallas.edu/~jessica.ouyang/" className="font-medium">Prof. Jessica Ouyang</a>.
+                Previously, I worked as a
                 Research Assistant at Singapore Management University and as a Research Intern at THUNLP, Tsinghua University,
                 and ModelBest \&amp; OpenBMB.
               </p>
@@ -35,7 +38,7 @@ function Hero() {
                 </a>
                 <a href="https://www.linkedin.com/in/zhiyu-yang-81b9961aa/" className="inline-flex items-center gap-2 border border-[var(--border-color)] text-[var(--text-primary)] px-5 py-3 rounded-lg hover:bg-[var(--hover-color)] transition-colors">
                   <div className="icon-globe text-lg"></div>
-                  Homepage
+                  LinkedIn
                 </a>
               </div>
             </div>
