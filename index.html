@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Zhiyu Yang - PhD Student</title>
-    <meta name="description" content="Academic homepage of Zhiyu Yang - PhD Student at UT Dallas, AI Research">
-    <meta name="keywords" content="PhD student, AI research, NLP, machine learning, computer science">
-    <meta property="og:title" content="Zhiyu Yang - PhD Student">
-    <meta property="og:description" content="PhD Student at UT Dallas working on AI and NLP research">
-    <meta name="twitter:title" content="Zhiyu Yang - PhD Student">
-    <meta name="twitter:description" content="PhD Student at UT Dallas working on AI and NLP research">
+    <title>Zhiyu Yang - Homepage</title>
+    <meta name="description" content="Academic homepage of Zhiyu Yang, Ph.D. student at the University of Texas at Dallas.">
+    <meta name="keywords" content="Zhiyu Yang, UT Dallas, NLP, LLM, AI, homepage, publications">
+    <meta property="og:title" content="Zhiyu Yang - Homepage">
+    <meta property="og:description" content="Ph.D. student at the University of Texas at Dallas working on NLP and large language models.">
+    <meta name="twitter:title" content="Zhiyu Yang - Homepage">
+    <meta name="twitter:description" content="Ph.D. student at the University of Texas at Dallas working on NLP and large language models.">
 
     <script src="https://resource.trickle.so/vendor_lib/unpkg/react@18/umd/react.production.min.js"></script>
     <script src="https://resource.trickle.so/vendor_lib/unpkg/react-dom@18/umd/react-dom.production.min.js"></script>
@@ -22,14 +22,15 @@
     <style type="text/tailwindcss">
     @layer theme {
         :root {
-            --primary-color: #2563eb;
-            --secondary-color: #64748b;
-            --accent-color: #dc2626;
-            --background-color: #ffffff;
-            --text-primary: #1e293b;
-            --text-secondary: #64748b;
-            --border-color: #e2e8f0;
-            --hover-color: #f8fafc;
+            --primary-color: #1d4ed8;
+            --secondary-color: #475569;
+            --accent-color: #0f172a;
+            --background-color: #f8fafc;
+            --surface-color: #ffffff;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --border-color: #cbd5e1;
+            --hover-color: #eff6ff;
         }
     }
 
@@ -38,10 +39,11 @@
             font-family: 'Georgia', 'Times New Roman', serif;
             color: var(--text-primary);
             line-height: 1.6;
+            background: var(--background-color);
         }
         
         h1, h2, h3, h4, h5, h6 {
-            font-family: 'Arial', 'Helvetica', sans-serif;
+            font-family: 'Helvetica Neue', 'Arial', sans-serif;
             font-weight: 600;
             color: var(--text-primary);
         }
@@ -58,7 +60,7 @@
 
     @layer components {
         .academic-card {
-            @apply bg-white border border-[var(--border-color)] rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow;
+            @apply bg-[var(--surface-color)] border border-[var(--border-color)] rounded-xl p-6 shadow-sm;
         }
         
         .nav-link {
@@ -66,11 +68,19 @@
         }
         
         .section-title {
-            @apply text-2xl font-semibold text-[var(--text-primary)] mb-6 pb-2 border-b border-[var(--border-color)];
+            @apply text-3xl font-semibold text-[var(--text-primary)] mb-6;
         }
         
         .publication-item {
             @apply border-b border-[var(--border-color)] pb-4 mb-4 last:border-b-0;
+        }
+
+        .section-block {
+            @apply py-12;
+        }
+
+        .content-list {
+            @apply space-y-3 text-[var(--text-secondary)];
         }
     }
 
@@ -88,8 +98,10 @@
     <div id="root"></div>
     <script type="text/babel" src="components/Header.js"></script>
     <script type="text/babel" src="components/Hero.js"></script>
+    <script type="text/babel" src="components/News.js"></script>
     <script type="text/babel" src="components/About.js"></script>
     <script type="text/babel" src="components/Publications.js"></script>
+    <script type="text/babel" src="components/Experience.js"></script>
     <script type="text/babel" src="components/Contact.js"></script>
     <script type="text/babel" src="components/Footer.js"></script>
     <script type="text/babel" src="app.js"></script>

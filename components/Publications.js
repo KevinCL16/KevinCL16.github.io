@@ -1,80 +1,82 @@
 function Publications() {
   try {
-    const publications = [
+    const publicationGroups = [
       {
-        title: "Why Stop at One Error? Benchmarking LLMs as Data Science Code Debuggers for Multi-Hop and Multi-Bug Errors",
-        authors: "Zhiyu Yang, Shuo Wang, Yukun Yan, Yang Deng",
-        venue: "EMNLP 2025 Main (First Author)",
+        year: "2026",
+        items: [
+          {
+            title: "CompactRAG: Reducing LLM Calls and Token Overhead in Multi-Hop Question Answering",
+            authors: "Hao Yang, Zhiyu Yang, Xupeng Zhang, Wei Wei, Yunjie Zhang, Lin Yang",
+            venue: "WWW 2026",
+            link: "https://arxiv.org/abs/2602.05728"
+          }
+        ]
+      },
+      {
         year: "2025",
-        type: "Conference",
-        link: "https://arxiv.org/abs/2503.22388",
-        summary: "Introduced DSDBench, a challenging benchmark built via an automated framework to test LLMs on realistic data science code with multiple, multi-hop bugs. Our findings reveal that even top models struggle to trace error origins and achieve complete bug detection, exposing a critical gap in their reasoning and debugging capabilities."
+        items: [
+          {
+            title: "Why Stop at One Error? Benchmarking LLMs as Data Science Code Debuggers for Multi-Hop and Multi-Bug Errors",
+            authors: "Zhiyu Yang, Shuo Wang, Yukun Yan, Yang Deng",
+            venue: "EMNLP 2025 Main -- Oral",
+            link: "https://aclanthology.org/2025.emnlp-main.878/"
+          },
+          {
+            title: "Rethinking the Chain-of-Thought: The Roles of In-Context Learning and Pre-trained Priors",
+            authors: "Hao Yang, Zhiyu Yang, Yunjie Zhang, Shanyi Zhu, Lin Yang",
+            venue: "ICIC 2025",
+            link: "https://arxiv.org/abs/2509.01236"
+          }
+        ]
       },
       {
-        title: "MatPlotAgent: Method and Evaluation for LLM-Based Agentic Scientific Data Visualization",
-        authors: "Zhiyu Yang, Zihan Zhou, Shuo Wang, Xin Cong, Xu Han, Yukun Yan, Zhenghao Liu, Zhixing Tan, Pengyuan Liu, Dong Yu, Zhiyuan Liu, Xiaodong Shi, Maosong Sun",
-        venue: "ACL 2024 Findings (First Author)",
         year: "2024",
-        type: "Conference",
-        link: "https://arxiv.org/abs/2402.11453",
-        summary: "Introduced MatPlotBench for automatic evaluation of AI methods for scientific data visualization. Proposed MatPlotAgent, a framework using visual feedback to enhance LLM performance."
-      },
-      {
-        title: "UltraLink: An Open-Source Knowledge-Enhanced Multilingual Supervised Fine-tuning Dataset",
-        authors: "Haoyu Wang, Shuo Wang, Yukun Yan, Xujia Wang, Zhiyu Yang, Yuzhuang Xu, Zhenghao Liu, Liner Yang, Ning Ding, Xu Han, Zhiyuan Liu, Maosong Sun",
-        venue: "ACL 2024 (Fifth Author)",
-        year: "2024",
-        type: "Conference",
-        link: "https://arxiv.org/abs/2402.04588",
-        summary: "Developed a multilingual SFT dataset with language-specific and language-agnostic subsets using knowledge-enhanced data augmentation methods with Wikipedia as knowledge source."
-      },
-      {
-        title: "Enhancing Free-Form Table Question Answering Models by Distilling Relevant-Cell-Based Rationales",
-        authors: "Zhiyu Yang, Shuo Wang, Yukun Yan, Pengyuan Liu, Dong Yu",
-        venue: "CCL 2024 (First Author)",
-        year: "2024",
-        type: "Conference",
-        link: "https://aclanthology.org/2024.ccl-1.75/",
-        summary: "Proposed a knowledge distillation method for table QA tasks using relevant-cell-based rationales, achieving SOTA results on the FeTaQA benchmark."
+        items: [
+          {
+            title: "MatPlotAgent: Method and Evaluation for LLM-Based Agentic Scientific Data Visualization",
+            authors: "Zhiyu Yang, Zihan Zhou, Shuo Wang, Xin Cong, Xu Han, Yukun Yan, Zhenghao Liu, Zhixing Tan, Pengyuan Liu, Dong Yu, Zhiyuan Liu, Xiaodong Shi, Maosong Sun",
+            venue: "ACL 2024 Findings",
+            link: "https://aclanthology.org/2024.findings-acl.701/"
+          },
+          {
+            title: "UltraLink: An Open-Source Knowledge-Enhanced Multilingual Supervised Fine-tuning Dataset",
+            authors: "Haoyu Wang, Shuo Wang, Yukun Yan, Xujia Wang, Zhiyu Yang, Yuzhuang Xu, Zhenghao Liu, Ning Ding, Xu Han, Zhiyuan Liu, Maosong Sun",
+            venue: "ACL 2024",
+            link: "https://aclanthology.org/2024.acl-long.644/"
+          },
+          {
+            title: "Enhancing Free-Form Table Question Answering Models by Distilling Relevant-Cell-Based Rationales",
+            authors: "Zhiyu Yang, Shuo Wang, Yukun Yan, Pengyuan Liu, Dong Yu",
+            venue: "CCL 2024 Poster",
+            link: "https://aclanthology.org/2024.ccl-1.75/"
+          }
+        ]
       }
     ];
 
     return (
-      <section id="publications" className="py-16 bg-gray-50" data-name="publications" data-file="components/Publications.js">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="section-title">Recent Publications</h2>
-          
-          <div className="space-y-6">
-            {publications.map((pub, index) => (
-              <div key={index} className="academic-card publication-item">
-                <div className="flex-1">
-                  <a href={pub.link} target="_blank" rel="noopener noreferrer">
-                    <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-2 hover:text-[var(--primary-color)] cursor-pointer">
-                      {pub.title}
-                    </h3>
-                  </a>
-                  <p className="text-[var(--text-secondary)] mb-2">{pub.authors}</p>
-                  <div className="flex items-center gap-4 text-sm mb-3">
-                    <span className="text-[var(--primary-color)] font-medium">{pub.venue}</span>
-                    <span className="text-[var(--text-secondary)]">{pub.year}</span>
-                    <span className={`px-2 py-1 rounded text-xs font-medium ${
-                      pub.type === 'Conference' 
-                        ? 'bg-blue-100 text-blue-800' 
-                        : 'bg-green-100 text-green-800'
-                    }`}>
-                      {pub.type}
-                    </span>
-                  </div>
-                  {pub.summary && (
-                    <p className="text-[var(--text-secondary)] text-sm leading-relaxed">
-                      <strong>Summary:</strong> {pub.summary}
-                    </p>
-                  )}
-                </div>
+      <section id="publications" className="section-block" data-name="publications" data-file="components/Publications.js">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="section-title">Publications</h2>
+
+          <div className="academic-card space-y-8">
+            {publicationGroups.map((group) => (
+              <div key={group.year}>
+                <h3 className="text-xl font-semibold text-[var(--text-primary)] mb-4">{group.year}</h3>
+                <ul className="content-list">
+                  {group.items.map((pub, index) => (
+                    <li key={index}>
+                      <span className="font-medium text-[var(--text-primary)]">{pub.venue}</span>{" "}
+                      <a href={pub.link} target="_blank" rel="noopener noreferrer" className="hover:underline">
+                        {pub.title}
+                      </a>
+                      <span>. {pub.authors}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             ))}
           </div>
-
         </div>
       </section>
     );

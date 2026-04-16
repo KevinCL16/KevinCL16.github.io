@@ -41,8 +41,10 @@ function App() {
         <Header />
         <main>
           <Hero />
+          <News />
           <About />
           <Publications />
+          <Experience />
           <Contact />
         </main>
         <Footer />

@@ -1,35 +1,41 @@
 function Hero() {
   try {
     return (
-      <section className="bg-gradient-to-br from-blue-50 to-indigo-100 py-16" data-name="hero" data-file="components/Hero.js">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row items-center gap-12">
+      <section id="home" className="section-block pt-16 pb-10" data-name="hero" data-file="components/Hero.js">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="academic-card flex flex-col md:flex-row items-center gap-10">
             <div className="flex-1">
               <h1 className="text-4xl md:text-5xl font-bold text-[var(--text-primary)] mb-4">
-                Zhiyu Yang 🏎️⚽🤖
+                Zhiyu Yang
               </h1>
               <h2 className="text-xl md:text-2xl text-[var(--secondary-color)] mb-6">
-                Ph.D. Student @ University of Texas at Dallas
+                Ph.D. Student, University of Texas at Dallas
               </h2>
-              <p className="text-lg text-[var(--text-secondary)] mb-8 leading-relaxed">Excited for the future of AI, want to be a part of it! 
-
-Ph.D. @ UTD, 
-
-Prev. RA @ Singapore Management University, 
-
-Prev. Research Intern @ THUNLP.</p>
-              <div className="flex flex-wrap gap-4">
-                <a href="mailto:kelvin.yangzhiyu@outlook.com" className="inline-flex items-center gap-2 bg-[var(--primary-color)] text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
+              <p className="text-lg text-[var(--text-secondary)] mb-4 leading-relaxed">
+                I am a Ph.D. student in Computer Science at the University of Texas at Dallas. Previously, I worked as a
+                Research Assistant at Singapore Management University and as a Research Intern at THUNLP, Tsinghua University,
+                and ModelBest \&amp; OpenBMB.
+              </p>
+              <p className="text-lg text-[var(--text-secondary)] mb-8 leading-relaxed">
+                My research interests include Natural Language Processing, Large Language Models, LLM Agents,
+                Multimodal LLMs, Code LLMs, Long Context Modeling, and Human-AI Interaction.
+              </p>
+              <div className="flex flex-wrap gap-3">
+                <a href="mailto:kelvin.yangzhiyu@outlook.com" className="inline-flex items-center gap-2 bg-[var(--text-primary)] text-white px-5 py-3 rounded-lg hover:bg-slate-800 transition-colors">
                   <div className="icon-mail text-lg"></div>
-                  Contact Me
+                  Email
                 </a>
-                <a href="https://github.com/KevinCL16" className="inline-flex items-center gap-2 border border-[var(--primary-color)] text-[var(--primary-color)] px-6 py-3 rounded-lg hover:bg-[var(--primary-color)] hover:text-white transition-colors">
+                <a href="https://github.com/KevinCL16" className="inline-flex items-center gap-2 border border-[var(--border-color)] text-[var(--text-primary)] px-5 py-3 rounded-lg hover:bg-[var(--hover-color)] transition-colors">
                   <div className="icon-github text-lg"></div>
                   GitHub
                 </a>
-                <a href="https://scholar.google.com/citations?user=KLbbYf0AAAAJ&hl=en" className="inline-flex items-center gap-2 border border-[var(--primary-color)] text-[var(--primary-color)] px-6 py-3 rounded-lg hover:bg-[var(--primary-color)] hover:text-white transition-colors">
+                <a href="https://scholar.google.com/citations?user=KLbbYf0AAAAJ&hl=en" className="inline-flex items-center gap-2 border border-[var(--border-color)] text-[var(--text-primary)] px-5 py-3 rounded-lg hover:bg-[var(--hover-color)] transition-colors">
                   <div className="icon-graduation-cap text-lg"></div>
                   Google Scholar
+                </a>
+                <a href="https://www.linkedin.com/in/zhiyu-yang-81b9961aa/" className="inline-flex items-center gap-2 border border-[var(--border-color)] text-[var(--text-primary)] px-5 py-3 rounded-lg hover:bg-[var(--hover-color)] transition-colors">
+                  <div className="icon-globe text-lg"></div>
+                  Homepage
                 </a>
               </div>
             </div>
@@ -37,13 +43,7 @@ Prev. Research Intern @ THUNLP.</p>
             <div className="flex-shrink-0">
               <div className="relative">
                 <img 
-                  
-                  
-                 
-                 src="https://app.trickle.so/storage/app/portrait.jpg" alt="Zhiyu Yang" className="w-64 h-64 rounded-full object-cover shadow-lg border-4 border-white"/>
-                <div className="absolute -bottom-4 -right-4 bg-[var(--primary-color)] text-white p-3 rounded-full shadow-lg">
-                  <div className="icon-graduation-cap text-xl"></div>
-                </div>
+                 src="https://app.trickle.so/storage/app/portrait.jpg" alt="Zhiyu Yang" className="w-56 h-56 md:w-64 md:h-64 rounded-2xl object-cover shadow-sm border border-[var(--border-color)]"/>
               </div>
             </div>
           </div>
