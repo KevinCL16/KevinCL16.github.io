@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="CV of Zhiyu Yang.">
+  <title>Zhiyu Yang — CV</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .cv-page { padding: 72px 0 100px; }
+    .cv-top { display: flex; justify-content: space-between; gap: 40px; align-items: start; padding-bottom: 32px; border-bottom: 2px solid var(--ink); }
+    .cv-top h1 { margin: 0; font: 400 clamp(42px, 6vw, 66px)/1 Georgia, "Times New Roman", serif; letter-spacing: -.05em; }
+    .cv-top p { margin: 12px 0 0; color: var(--muted); }
+    .cv-contact { display: flex; flex-direction: column; align-items: flex-end; gap: 5px; color: var(--muted); font-size: 13px; text-align: right; }
+    .cv-contact a:hover { color: var(--accent); }
+    .cv-section { display: grid; grid-template-columns: 165px minmax(0, 1fr); gap: 42px; padding: 34px 0; border-bottom: 1px solid var(--line); }
+    .cv-section h2 { margin: 0; font-size: 26px; }
+    .cv-entry { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 24px; margin-bottom: 27px; }
+    .cv-entry:last-child { margin-bottom: 0; }
+    .cv-entry time { color: var(--accent); font-size: 12px; }
+    .cv-entry h3 { margin: 0; font: 600 16px/1.35 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; letter-spacing: -.02em; }
+    .cv-entry p { margin: 5px 0 0; color: var(--muted); font-size: 14px; }
+    .cv-pubs { margin: 0; padding: 0; list-style: none; }
+    .cv-pubs li { margin-bottom: 16px; color: var(--muted); font-size: 14px; }
+    .cv-pubs li:last-child { margin-bottom: 0; }
+    .cv-pubs strong { color: var(--ink); font-weight: 650; }
+    .cv-actions { display: flex; gap: 10px; margin-top: 30px; }
+    @media print {
+      .site-header, .cv-actions { display: none; }
+      .cv-page { padding: 0; }
+      body { background: white; }
+    }
+    @media (max-width: 680px) {
+      .cv-top { display: block; }
+      .cv-contact { align-items: flex-start; margin-top: 20px; text-align: left; }
+      .cv-section { grid-template-columns: 1fr; gap: 20px; }
+      .cv-entry { grid-template-columns: 1fr; gap: 4px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="index.html#top"><span class="brand-mark">ZY</span><span class="brand-name">Zhiyu Yang</span></a>
+      <nav class="site-nav" style="display:flex" aria-label="CV navigation">
+        <a href="index.html#work">Selected work</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="cv-page">
+    <div class="wrap">
+      <div class="cv-top">
+        <div>
+          <h1>Zhiyu Yang</h1>
+          <p>Researcher-builder · AI agents, coding, and human–AI experience</p>
+        </div>
+        <div class="cv-contact">
+          <a href="mailto:kelvin.yangzhiyu@outlook.com">kelvin.yangzhiyu@outlook.com</a>
+          <a href="https://github.com/KevinCL16">github.com/KevinCL16</a>
+          <a href="https://scholar.google.com/citations?user=KLbbYf0AAAAJ&amp;hl=en">Google Scholar</a>
+        </div>
+      </div>
+
+      <div class="cv-actions">
+        <a class="button button-solid" href="javascript:window.print()">Print / Save PDF <span aria-hidden="true">↓</span></a>
+        <a class="button button-quiet" href="index.html">Back to homepage <span aria-hidden="true">↗</span></a>
+      </div>
+
+      <section class="cv-section">
+        <h2>Education</h2>
+        <div>
+          <div class="cv-entry"><time>2025–</time><div><h3>University of Texas at Dallas</h3><p>PhD in Computer Science</p></div></div>
+          <div class="cv-entry"><time>2021–2024</time><div><h3>Beijing Language and Culture University</h3><p>M.Eng. in Computer Science and Technology</p></div></div>
+          <div class="cv-entry"><time>2017–2021</time><div><h3>Sichuan University</h3><p>B.Eng. in Computer Science and Technology</p></div></div>
+        </div>
+      </section>
+
+      <section class="cv-section">
+        <h2>Experience</h2>
+        <div>
+          <div class="cv-entry"><time>2024–2025</time><div><h3>Research Assistant · Singapore Management University</h3><p>Worked with Yang Deng on LLM benchmarks for multi-hop and multi-bug data-science code debugging.</p></div></div>
+          <div class="cv-entry"><time>2023–2024</time><div><h3>Research Intern · THUNLP, Tsinghua University</h3><p>Worked on MatPlotAgent for agentic scientific visualization and UltraLink for multilingual supervised fine-tuning data.</p></div></div>
+          <div class="cv-entry"><time>2024</time><div><h3>Research Intern · ModelBest &amp; OpenBMB</h3><p>Worked on LLM×MapReduce for adapting regular LLMs to long-context inputs.</p></div></div>
+        </div>
+      </section>
+
+      <section class="cv-section">
+        <h2>Selected publications</h2>
+        <ol class="cv-pubs">
+          <li><strong>Yang, Zhiyu</strong>, et al. “Why Stop at One Error? Benchmarking LLMs as Data Science Code Debuggers for Multi-Hop and Multi-Bug Errors.” <em>EMNLP 2025 Main — Oral.</em></li>
+          <li><strong>Yang, Zhiyu</strong>, et al. “MatPlotAgent: Method and Evaluation for LLM-Based Agentic Scientific Data Visualization.” <em>ACL 2024 Findings.</em></li>
+          <li>Yang, Hao, <strong>Yang, Zhiyu</strong>, et al. “CompactRAG: Reducing LLM Calls and Token Overhead in Multi-Hop Question Answering.” <em>WWW 2026.</em></li>
+          <li><strong>Yang, Zhiyu</strong>, et al. “Enhancing Free-Form Table Question Answering Models by Distilling Relevant-Cell-Based Rationales.” <em>CCL 2024.</em></li>
+          <li>Wang, Haoyu, <strong>Yang, Zhiyu</strong>, et al. “UltraLink: An Open-Source Knowledge-Enhanced Multilingual Supervised Fine-tuning Dataset.” <em>ACL 2024.</em></li>
+        </ol>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

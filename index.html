@@ -1,109 +1,248 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Zhiyu Yang - Homepage</title>
-    <meta name="description" content="Academic homepage of Zhiyu Yang, Ph.D. student at the University of Texas at Dallas.">
-    <meta name="keywords" content="Zhiyu Yang, UT Dallas, NLP, LLM, AI, homepage, publications">
-    <meta property="og:title" content="Zhiyu Yang - Homepage">
-    <meta property="og:description" content="Ph.D. student at the University of Texas at Dallas working on NLP and large language models.">
-    <meta name="twitter:title" content="Zhiyu Yang - Homepage">
-    <meta name="twitter:description" content="Ph.D. student at the University of Texas at Dallas working on NLP and large language models.">
-
-    <script src="https://resource.trickle.so/vendor_lib/unpkg/react@18/umd/react.production.min.js"></script>
-    <script src="https://resource.trickle.so/vendor_lib/unpkg/react-dom@18/umd/react-dom.production.min.js"></script>
-    <script src="https://resource.trickle.so/vendor_lib/unpkg/@babel/standalone/babel.min.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://resource.trickle.so/vendor_lib/unpkg/lucide-static@0.516.0/font/lucide.css" rel="stylesheet">
-
-    <!-- Predefined Tailwind CSS, use it as needed, or update base on your -->
-    <style type="text/tailwindcss">
-    @layer theme {
-        :root {
-            --primary-color: #1d4ed8;
-            --secondary-color: #475569;
-            --accent-color: #0f172a;
-            --background-color: #f8fafc;
-            --surface-color: #ffffff;
-            --text-primary: #0f172a;
-            --text-secondary: #475569;
-            --border-color: #cbd5e1;
-            --hover-color: #eff6ff;
-        }
-    }
-
-    @layer base {
-        body {
-            font-family: 'Georgia', 'Times New Roman', serif;
-            color: var(--text-primary);
-            line-height: 1.6;
-            background: var(--background-color);
-        }
-        
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Helvetica Neue', 'Arial', sans-serif;
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-        
-        a {
-            color: var(--primary-color);
-            text-decoration: none;
-        }
-        
-        a:hover {
-            text-decoration: underline;
-        }
-    }
-
-    @layer components {
-        .academic-card {
-            @apply bg-[var(--surface-color)] border border-[var(--border-color)] rounded-xl p-6 shadow-sm;
-        }
-        
-        .nav-link {
-            @apply text-[var(--text-secondary)] hover:text-[var(--primary-color)] px-3 py-2 rounded-md transition-colors;
-        }
-        
-        .section-title {
-            @apply text-3xl font-semibold text-[var(--text-primary)] mb-6;
-        }
-        
-        .publication-item {
-            @apply border-b border-[var(--border-color)] pb-4 mb-4 last:border-b-0;
-        }
-
-        .section-block {
-            @apply py-12;
-        }
-
-        .content-list {
-            @apply space-y-3 text-[var(--text-secondary)];
-        }
-    }
-
-    @layer utilities {
-        .text-gradient {
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-    }
-    </style>
-
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Zhiyu Yang is a CS PhD student at UT Dallas studying AI agents for long-running work, coding, multimodal reasoning, and human–AI collaboration.">
+  <meta name="theme-color" content="#f6f5f0">
+  <meta property="og:title" content="Zhiyu Yang — Researcher & Builder">
+  <meta property="og:description" content="Research on AI agents that can work through long, evolving tasks.">
+  <meta property="og:type" content="website">
+  <title>Zhiyu Yang — Researcher &amp; Builder</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="root"></div>
-    <script type="text/babel" src="components/Header.js"></script>
-    <script type="text/babel" src="components/Hero.js"></script>
-    <script type="text/babel" src="components/News.js"></script>
-    <script type="text/babel" src="components/About.js"></script>
-    <script type="text/babel" src="components/Publications.js"></script>
-    <script type="text/babel" src="components/Experience.js"></script>
-    <script type="text/babel" src="components/Contact.js"></script>
-    <script type="text/babel" src="components/Footer.js"></script>
-    <script type="text/babel" src="app.js"></script>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="#top" aria-label="Zhiyu Yang home">
+        <span class="brand-mark">ZY</span>
+        <span class="brand-name">Zhiyu Yang</span>
+      </a>
+
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span>Menu</span>
+        <span class="menu-line" aria-hidden="true"></span>
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
+        <a href="#focus">Focus</a>
+        <a href="#work">Work</a>
+        <a href="#writing">Writing</a>
+        <a href="#background">Background</a>
+        <a class="nav-external" href="https://github.com/KevinCL16" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero section-rule">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">CS PhD · University of Texas at Dallas</p>
+          <h1>I build AI agents for work that <em>unfolds over time.</em></h1>
+          <p class="hero-lede">I build and study AI agents that can work through long, evolving tasks—especially in coding, multimodal reasoning, and human–AI collaboration.</p>
+          <p class="hero-history">Previously SMU · THUNLP · ModelBest · OpenBMB</p>
+
+          <div class="hero-actions" aria-label="Homepage links">
+            <a class="button button-solid" href="#work">Selected work <span aria-hidden="true">↓</span></a>
+            <a class="button button-quiet" href="#writing">Writing <span aria-hidden="true">↗</span></a>
+            <a class="button button-quiet" href="cv.html">CV <span aria-hidden="true">↗</span></a>
+            <a class="button button-quiet" href="https://github.com/KevinCL16" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+
+        <div class="hero-portrait-wrap">
+          <div class="portrait-frame">
+            <img class="hero-portrait" src="assets/portrait.jpg" alt="Portrait of Zhiyu Yang">
+          </div>
+          <p class="portrait-caption"><span class="caption-dot"></span> Researcher-builder · benchmarks, systems, and the experience around them.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-rule" id="focus">
+      <div class="wrap">
+        <div class="section-heading">
+          <p class="section-index">01 / Current focus</p>
+          <div>
+            <h2>What I am trying to understand now.</h2>
+            <p class="section-intro">The common thread is continuity: how an agent keeps its bearings as the task, context, and relationship with a person evolve.</p>
+          </div>
+        </div>
+
+        <div class="focus-grid">
+          <article class="focus-item">
+            <p class="item-number">01</p>
+            <h3>Persistent agents</h3>
+            <p>Context, state, and task continuity across long-running work.</p>
+          </article>
+          <article class="focus-item">
+            <p class="item-number">02</p>
+            <h3>Agent evaluation</h3>
+            <p>Benchmarks grounded in realistic failure modes rather than isolated toy tasks.</p>
+          </article>
+          <article class="focus-item">
+            <p class="item-number">03</p>
+            <h3>Human–AI experience</h3>
+            <p>How real interaction trajectories can become evaluation, memory, and learning signals.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-rule" id="work">
+      <div class="wrap">
+        <div class="section-heading section-heading-inline">
+          <div>
+            <p class="section-index">02 / Selected work</p>
+            <h2>Things I have made public.</h2>
+          </div>
+          <a class="text-link" href="https://scholar.google.com/citations?user=KLbbYf0AAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer">All publications <span aria-hidden="true">↗</span></a>
+        </div>
+
+        <div class="work-list">
+          <article class="work-item">
+            <div class="work-number">01</div>
+            <div class="work-main">
+              <div class="work-title-row">
+                <h3>DSDBench</h3>
+                <p class="venue">EMNLP 2025 Main · Oral</p>
+              </div>
+              <p class="work-full-title">Why Stop at One Error? Benchmarking LLMs as Data Science Code Debuggers for Multi-Hop and Multi-Bug Errors</p>
+              <p class="work-description">A data-science debugging benchmark for tracing multi-hop logical errors and resolving multiple bugs in realistic code.</p>
+              <div class="work-links">
+                <a href="https://aclanthology.org/2025.emnlp-main.878/" target="_blank" rel="noopener noreferrer">Paper <span aria-hidden="true">↗</span></a>
+                <a href="https://github.com/KevinCL16/DSDBench" target="_blank" rel="noopener noreferrer">Code <span aria-hidden="true">↗</span></a>
+                <a href="https://arxiv.org/abs/2503.22388" target="_blank" rel="noopener noreferrer">Project <span aria-hidden="true">↗</span></a>
+              </div>
+            </div>
+          </article>
+
+          <article class="work-item">
+            <div class="work-number">02</div>
+            <div class="work-main">
+              <div class="work-title-row">
+                <h3>MatPlotAgent</h3>
+                <p class="venue">ACL 2024 Findings</p>
+              </div>
+              <p class="work-full-title">Method and Evaluation for LLM-Based Agentic Scientific Data Visualization</p>
+              <p class="work-description">A visual-feedback agent that turns natural-language requests into scientific visualizations, then uses the rendered chart to repair its own code.</p>
+              <div class="work-links">
+                <a href="https://aclanthology.org/2024.findings-acl.701/" target="_blank" rel="noopener noreferrer">Paper <span aria-hidden="true">↗</span></a>
+                <a href="https://github.com/thunlp/MatPlotAgent" target="_blank" rel="noopener noreferrer">Code <span aria-hidden="true">↗</span></a>
+                <a href="https://arxiv.org/abs/2402.11453" target="_blank" rel="noopener noreferrer">Project <span aria-hidden="true">↗</span></a>
+              </div>
+            </div>
+          </article>
+
+          <article class="work-item">
+            <div class="work-number">03</div>
+            <div class="work-main">
+              <div class="work-title-row">
+                <h3>CompactRAG</h3>
+                <p class="venue">WWW 2026</p>
+              </div>
+              <p class="work-full-title">Reducing LLM Calls and Token Overhead in Multi-Hop Question Answering</p>
+              <p class="work-description">A cost-efficient multi-hop reasoning framework that separates offline corpus restructuring from online inference and keeps the main LLM to two calls.</p>
+              <div class="work-links">
+                <a href="https://arxiv.org/abs/2602.05728" target="_blank" rel="noopener noreferrer">Paper <span aria-hidden="true">↗</span></a>
+                <a href="https://github.com/How-Young-X/CompactRAG" target="_blank" rel="noopener noreferrer">Code <span aria-hidden="true">↗</span></a>
+                <a href="https://dl.acm.org/doi/10.1145/3774904.3792512" target="_blank" rel="noopener noreferrer">Project <span aria-hidden="true">↗</span></a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-rule" id="writing">
+      <div class="wrap">
+        <div class="section-heading section-heading-inline">
+          <div>
+            <p class="section-index">03 / Writing</p>
+            <h2>A working notebook, in public.</h2>
+          </div>
+          <a class="text-link" href="https://kelvinyang.notion.site/" target="_blank" rel="noopener noreferrer">Open the Notion notebook <span aria-hidden="true">↗</span></a>
+        </div>
+
+        <div class="writing-grid">
+          <a class="writing-item" href="https://kelvinyang.notion.site/" target="_blank" rel="noopener noreferrer">
+            <div class="writing-meta"><span>Aug 2026</span><span>Essay</span></div>
+            <h3>From policy engineering to experience engineering</h3>
+            <p>Where the next gains in agent systems may come from after the workflow itself becomes easy to copy.</p>
+            <span class="writing-arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="writing-item" href="https://kelvinyang.notion.site/" target="_blank" rel="noopener noreferrer">
+            <div class="writing-meta"><span>Jul 2026</span><span>Research note</span></div>
+            <h3>The shape of a persistent agent</h3>
+            <p>Context, state, and task continuity as the three pressures behind agents that stay useful over time.</p>
+            <span class="writing-arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="writing-item" href="https://kelvinyang.notion.site/" target="_blank" rel="noopener noreferrer">
+            <div class="writing-meta"><span>Jul 2026</span><span>Research note</span></div>
+            <h3>What a benchmark should remember</h3>
+            <p>Why realistic failure modes—and the traces left by real use—matter more than another isolated capability score.</p>
+            <span class="writing-arrow" aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-rule" id="background">
+      <div class="wrap background-grid">
+        <div>
+          <p class="section-index">04 / Background</p>
+          <h2>The path so far.</h2>
+          <p class="section-intro">A few places where the work took shape.</p>
+        </div>
+
+        <div class="timeline" aria-label="Education and research experience">
+          <div class="timeline-item">
+            <time>2025–</time>
+            <div><h3>University of Texas at Dallas</h3><p>CS PhD</p></div>
+          </div>
+          <div class="timeline-item">
+            <time>2024–2025</time>
+            <div><h3>Singapore Management University</h3><p>Research Assistant · Yang Deng</p></div>
+          </div>
+          <div class="timeline-item">
+            <time>2023–2024</time>
+            <div><h3>THUNLP · ModelBest · OpenBMB</h3><p>Research Intern</p></div>
+          </div>
+          <div class="timeline-item">
+            <time>2021–2024</time>
+            <div><h3>Beijing Language and Culture University</h3><p>M.Eng. in Computer Science and Technology</p></div>
+          </div>
+          <div class="timeline-item">
+            <time>2017–2021</time>
+            <div><h3>Sichuan University</h3><p>B.Eng. in Computer Science and Technology</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-band" id="contact">
+      <div class="wrap contact-inner">
+        <div>
+          <p class="section-index">05 / Contact</p>
+          <h2>Say hello, or send a hard problem.</h2>
+        </div>
+        <div class="contact-links">
+          <a href="mailto:kelvin.yangzhiyu@outlook.com">kelvin.yangzhiyu@outlook.com <span aria-hidden="true">↗</span></a>
+          <a href="https://scholar.google.com/citations?user=KLbbYf0AAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer">Google Scholar <span aria-hidden="true">↗</span></a>
+          <a href="https://www.linkedin.com/in/zhiyu-yang-81b9961aa/" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <p>© <span id="current-year">2026</span> Zhiyu Yang</p>
+      <p>Built as a research homepage, not a résumé in disguise.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
