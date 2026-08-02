@@ -107,6 +107,8 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 .work-links a:hover { color: var(--accent); }
 
 .writing-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); }
+.writing-grid-single { grid-template-columns: minmax(0, 680px); }
+.writing-grid-single .writing-item { border-right: 0; }
 .writing-item { position: relative; min-height: 265px; padding: 23px 28px 26px 0; border-right: 1px solid var(--line); transition: color .2s ease, transform .2s ease; }
 .writing-item + .writing-item { padding-left: 28px; }
 .writing-item:last-child { border-right: 0; }
