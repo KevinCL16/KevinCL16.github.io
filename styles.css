@@ -254,6 +254,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
     max-width: none;
     font-size: clamp(36px, 4.4vw, 50px);
     line-height: 1;
+    letter-spacing: -.02em;
     white-space: nowrap;
   }
   .hero-lower {
