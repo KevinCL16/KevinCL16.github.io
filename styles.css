@@ -124,6 +124,18 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 .timeline-item time { color: var(--accent); font-size: 12px; font-variant-numeric: tabular-nums; }
 .timeline-item h3 { margin: 0; font-size: 22px; line-height: 1.2; }
 .timeline-item p { margin: 5px 0 0; color: var(--muted); font-size: 13px; }
+.mentor-line a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--accent) 48%, transparent);
+  text-underline-offset: 3px;
+  transition: color .2s ease, text-decoration-color .2s ease;
+}
+.mentor-line a:hover {
+  color: var(--accent);
+  text-decoration-color: var(--accent);
+}
+.mentor-line > span { color: var(--accent); }
 
 .contact-band { padding: 84px 0 88px; color: var(--white); background: var(--ink); }
 .contact-inner { display: flex; align-items: end; justify-content: space-between; gap: 60px; }
