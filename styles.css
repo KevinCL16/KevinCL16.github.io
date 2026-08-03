@@ -58,7 +58,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 
 .section-rule { border-bottom: 1px solid var(--line); }
 
-.hero { padding: 76px 0 104px; }
+.hero { padding: 48px 0 104px; }
 .hero-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(250px, .8fr); gap: 88px; align-items: center; }
 .eyebrow, .section-index { margin: 0 0 23px; color: var(--accent); font-size: 11px; font-weight: 750; letter-spacing: .14em; text-transform: uppercase; }
 .hero h1, h2, h3 { font-family: Georgia, "Times New Roman", serif; font-weight: 400; letter-spacing: -.045em; }
@@ -154,7 +154,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
   .site-nav { display: none; position: absolute; top: 66px; left: 0; right: 0; flex-direction: column; align-items: stretch; gap: 0; padding: 10px 18px 16px; border-bottom: 1px solid var(--line); background: var(--paper); }
   .nav-open .site-nav { display: flex; }
   .site-nav a { padding: 9px 0; }
-  .hero { padding: 58px 0 72px; }
+  .hero { padding: 40px 0 72px; }
   .hero-grid { grid-template-columns: 1fr; gap: 48px; }
   .hero h1 { font-size: clamp(45px, 13vw, 68px); }
   .hero-lede { font-size: 17px; }
