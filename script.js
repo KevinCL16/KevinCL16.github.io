@@ -10,12 +10,4 @@
 
     nav.querySelectorAll('a').forEach(function (link) {
       link.addEventListener('click', function () {
-        document.body.classList.remove('nav-open');
-        menuToggle.setAttribute('aria-expanded', 'false');
-      });
-    });
-  }
-
-  const year = document.querySelector('#current-year');
-  if (year) year.textContent = new Date().getFullYear();
-})();
+        document.body.classList
