@@ -20,8 +20,18 @@
   if (year) year.textContent = new Date().getFullYear();
 
   // Cloudflare Web Analytics with private browser-level opt-out.
-  const analyticsToken = '8d2373e097ef4c7c8ceb94f0b50b8275';
+  // This is a public site identifier embedded in the client-side beacon,
+  // not an account credential or Cloudflare API token.
+  const analyticsSiteId = '8d2373e097ef4c7c8ceb94f0b50b8275';
   const storageKey = 'disable-cloudflare-analytics';
+
+  function loadAnalytics() {
+    const script = document.createElement('script');
+    script.type = 'module';
+    script.src = 'https://static.cloudflareinsights.com/beacon.min.js';
+    script.dataset.cfBeacon = JSON.stringify({ token: analyticsSiteId });
+    document.head.appendChild(script);
+  }
 
   try {
     const params = new URLSearchParams(window.location.search);
@@ -39,17 +49,9 @@
     }
 
     if (localStorage.getItem(storageKey) !== 'true') {
-      const script = document.createElement('script');
-      script.type = 'module';
-      script.src = 'https://static.cloudflareinsights.com/beacon.min.js';
-      script.dataset.cfBeacon = JSON.stringify({ token: analyticsToken });
-      document.head.appendChild(script);
+      loadAnalytics();
     }
   } catch (e) {
-    const script = document.createElement('script');
-    script.type = 'module';
-    script.src = 'https://static.cloudflareinsights.com/beacon.min.js';
-    script.dataset.cfBeacon = JSON.stringify({ token: analyticsToken });
-    document.head.appendChild(script);
+    loadAnalytics();
   }
 })();
