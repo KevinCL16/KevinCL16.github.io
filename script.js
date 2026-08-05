@@ -19,11 +19,59 @@
   const year = document.querySelector('#current-year');
   if (year) year.textContent = new Date().getFullYear();
 
-  // Cloudflare Web Analytics with private browser-level opt-out.
+  // Cloudflare Web Analytics with a private browser-level opt-out.
   // This is a public site identifier embedded in the client-side beacon,
   // not an account credential or Cloudflare API token.
   const analyticsSiteId = '8d2373e097ef4c7c8ceb94f0b50b8275';
   const storageKey = 'disable-cloudflare-analytics';
+  const cookieName = 'disable_cloudflare_analytics';
+  const params = new URLSearchParams(window.location.search);
+  const analyticsMode = params.get('analytics');
+
+  function setOptOut(enabled) {
+    try {
+      if (enabled) {
+        localStorage.setItem(storageKey, 'true');
+      } else {
+        localStorage.removeItem(storageKey);
+      }
+    } catch (error) {
+      // Cookie below remains as a fallback when localStorage is unavailable.
+    }
+
+    if (enabled) {
+      document.cookie = cookieName + '=true; Max-Age=31536000; Path=/; SameSite=Lax; Secure';
+    } else {
+      document.cookie = cookieName + '=; Max-Age=0; Path=/; SameSite=Lax; Secure';
+    }
+  }
+
+  function isOptedOut() {
+    try {
+      if (localStorage.getItem(storageKey) === 'true') return true;
+    } catch (error) {
+      // Fall through to the cookie check.
+    }
+
+    return document.cookie
+      .split(';')
+      .map(function (part) { return part.trim(); })
+      .some(function (part) { return part === cookieName + '=true'; });
+  }
+
+  function cleanAnalyticsParameter() {
+    try {
+      params.delete('analytics');
+      const query = params.toString();
+      window.history.replaceState(
+        {},
+        document.title,
+        window.location.pathname + (query ? '?' + query : '') + window.location.hash
+      );
+    } catch (error) {
+      // URL cleanup is cosmetic; analytics behavior is already decided.
+    }
+  }
 
   function loadAnalytics() {
     const script = document.createElement('script');
@@ -33,25 +81,25 @@
     document.head.appendChild(script);
   }
 
-  try {
-    const params = new URLSearchParams(window.location.search);
+  if (analyticsMode === 'off') {
+    setOptOut(true);
+    cleanAnalyticsParameter();
+    return;
+  }
 
-    if (params.get('analytics') === 'off') {
-      localStorage.setItem(storageKey, 'true');
-      params.delete('analytics');
-      window.history.replaceState({}, document.title, window.location.pathname + (params.toString() ? '?' + params.toString() : '') + window.location.hash);
-    }
+  if (analyticsMode === 'on') {
+    setOptOut(false);
+    cleanAnalyticsParameter();
+  }
 
-    if (params.get('analytics') === 'on') {
-      localStorage.removeItem(storageKey);
-      params.delete('analytics');
-      window.history.replaceState({}, document.title, window.location.pathname + (params.toString() ? '?' + params.toString() : '') + window.location.hash);
-    }
+  if (analyticsMode === 'status') {
+    const optedOut = isOptedOut();
+    window.alert('Cloudflare Analytics is ' + (optedOut ? 'OFF' : 'ON') + ' in this browser.');
+    cleanAnalyticsParameter();
+    if (optedOut) return;
+  }
 
-    if (localStorage.getItem(storageKey) !== 'true') {
-      loadAnalytics();
-    }
-  } catch (e) {
+  if (!isOptedOut()) {
     loadAnalytics();
   }
 })();
