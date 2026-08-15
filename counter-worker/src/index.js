@@ -1,5 +1,4 @@
 const ALLOWED_ORIGIN = "https://kevincl16.github.io";
-const INITIAL_VIEW_COUNT = 4;
 
 function corsHeaders(origin) {
   const headers = {
@@ -58,9 +57,9 @@ export default {
       await env.DB.batch([
         env.DB.prepare(
           `INSERT INTO site_totals (id, views)
-           VALUES (1, ?)
+           VALUES (1, 1)
            ON CONFLICT(id) DO UPDATE SET views = site_totals.views + 1`
-        ).bind(INITIAL_VIEW_COUNT + 1),
+        ),
         env.DB.prepare(
           `INSERT INTO regional_views (view_date, country, region_code, region, views)
            VALUES (?, ?, ?, ?, 1)
