@@ -22,7 +22,7 @@
   // Both analytics systems share this browser-level opt-out.
   // The Cloudflare beacon token is public client-side configuration, not a secret.
   const analyticsSiteId = '8d2373e097ef4c7c8ceb94f0b50b8275';
-  const pageviewCounterEndpoint = '';
+  const pageviewCounterEndpoint = 'https://kevincl16-page-counter.teslacpp.workers.dev/hit';
   const storageKey = 'disable-cloudflare-analytics';
   const cookieName = 'disable_cloudflare_analytics';
   const params = new URLSearchParams(window.location.search);
