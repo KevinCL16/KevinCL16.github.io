@@ -164,7 +164,7 @@ export default {
       return new Response(null, { status: 204, headers: corsHeaders(origin) });
     }
 
-    if (origin && origin !== ALLOWED_ORIGIN) {
+    if (origin && origin !== ALLOWED_ORIGIN && origin !== url.origin) {
       return json({ error: "origin_not_allowed" }, 403, origin);
     }
 
