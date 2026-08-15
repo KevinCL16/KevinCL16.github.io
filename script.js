@@ -19,10 +19,10 @@
   const year = document.querySelector('#current-year');
   if (year) year.textContent = new Date().getFullYear();
 
-  // Cloudflare Web Analytics with a private browser-level opt-out.
-  // This is a public site identifier embedded in the client-side beacon,
-  // not an account credential or Cloudflare API token.
+  // Both analytics systems share this browser-level opt-out.
+  // The Cloudflare beacon token is public client-side configuration, not a secret.
   const analyticsSiteId = '8d2373e097ef4c7c8ceb94f0b50b8275';
+  const pageviewCounterEndpoint = '';
   const storageKey = 'disable-cloudflare-analytics';
   const cookieName = 'disable_cloudflare_analytics';
   const params = new URLSearchParams(window.location.search);
@@ -81,6 +81,22 @@
     document.head.appendChild(script);
   }
 
+  function countPageview() {
+    if (!pageviewCounterEndpoint) return;
+
+    fetch(pageviewCounterEndpoint, {
+      method: 'POST',
+      mode: 'cors',
+      credentials: 'omit',
+      cache: 'no-store',
+      keepalive: true,
+      headers: { 'Content-Type': 'application/json' },
+      body: '{}'
+    }).catch(function () {
+      // Analytics must never interfere with page rendering.
+    });
+  }
+
   if (analyticsMode === 'off') {
     setOptOut(true);
     cleanAnalyticsParameter();
@@ -101,5 +117,6 @@
 
   if (!isOptedOut()) {
     loadAnalytics();
+    countPageview();
   }
 })();
