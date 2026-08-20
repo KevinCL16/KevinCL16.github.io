@@ -44,7 +44,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 .header-inner { min-height: 76px; display: flex; align-items: center; justify-content: space-between; }
 .brand { display: inline-flex; align-items: center; gap: 12px; font-size: 15px; font-weight: 650; letter-spacing: -.02em; }
 .brand-mark { display: grid; place-items: center; width: 30px; height: 30px; border: 1px solid var(--ink); border-radius: 50%; font-size: 10px; letter-spacing: .04em; }
-.brand-name { white-space: nowrap; font-size: 17px; }
+.brand-name { white-space: nowrap; }
 
 .site-nav { display: flex; align-items: center; gap: 28px; font-size: 13px; color: var(--muted); }
 .site-nav a { transition: color .2s ease; }
@@ -196,6 +196,10 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 .button-solid { border-color: var(--ink); color: var(--white); background: var(--ink); }
 .button-solid span { color: #efb19a; }
 .button-quiet { color: var(--ink); background: transparent; }
+
+@media (min-width: 761px) {
+  .brand-name { font-size: 17px; }
+}
 
 @media (max-width: 760px) {
   .wrap { width: min(var(--wrap), calc(100% - 36px)); }
