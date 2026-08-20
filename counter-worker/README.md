@@ -32,7 +32,7 @@ The Worker reads `request.cf.country`, `request.cf.regionCode`, and `request.cf.
 
 6. Put the deployed Worker URL ending in `/hit` into `pageviewCounterEndpoint` in the site's `script.js`.
 
-The summary endpoint is not called by the public page. For a browser view, open `https://YOUR_WORKER_HOST/dashboard` and enter the `SUMMARY_TOKEN`; the token is kept in session storage and is not put into the URL. The raw API can also be queried with the secret token:
+The summary endpoint is not called by the public page. For a browser view, open `https://YOUR_WORKER_HOST/dashboard` (the root URL also remains supported) and enter the `SUMMARY_TOKEN`; the token is kept in session storage and is not put into the URL. The raw API can also be queried with the secret token:
 
 ```bash
 curl https://YOUR_WORKER_HOST/summary \

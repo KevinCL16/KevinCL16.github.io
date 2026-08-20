@@ -168,7 +168,7 @@ export default {
       return json({ error: "origin_not_allowed" }, 403, origin);
     }
 
-    if (url.pathname === "/dashboard" && request.method === "GET") {
+    if ((url.pathname === "/dashboard" || url.pathname === "/") && request.method === "GET") {
       return dashboard(origin);
     }
 
