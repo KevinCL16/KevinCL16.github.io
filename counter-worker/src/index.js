@@ -168,6 +168,10 @@ export default {
       return json({ error: "origin_not_allowed" }, 403, origin);
     }
 
+    if (url.pathname === "/health" && request.method === "GET") {
+      return json({ ok: true, database: Boolean(env.DB) }, 200, origin);
+    }
+
     if ((url.pathname === "/dashboard" || url.pathname === "/") && request.method === "GET") {
       return dashboard(origin);
     }
