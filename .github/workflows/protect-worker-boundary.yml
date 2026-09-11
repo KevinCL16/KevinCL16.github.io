@@ -1,0 +1,48 @@
+name: Protect Worker deployment boundary
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  boundary:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Reject mixed site and Worker runtime changes
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            BASE="${{ github.event.pull_request.base.sha }}"
+            HEAD="${{ github.event.pull_request.head.sha }}"
+          else
+            BASE="${{ github.event.before }}"
+            HEAD="${{ github.sha }}"
+            if [ "$BASE" = "0000000000000000000000000000000000000000" ]; then
+              BASE="$(git rev-list --max-parents=0 "$HEAD")"
+            fi
+          fi
+
+          CHANGED="$(git diff --name-only "$BASE" "$HEAD")"
+          printf '%s\n' "$CHANGED"
+
+          WORKER_RUNTIME="$(printf '%s\n' "$CHANGED" | grep -E '^counter-worker/(src/|migrations/|wrangler\.toml)' || true)"
+          SITE_CHANGES="$(printf '%s\n' "$CHANGED" | grep -v -E '^counter-worker/' | grep -v -E '^AGENTS\.md$' | grep -v -E '^\.github/workflows/protect-worker-boundary\.yml$' || true)"
+
+          if [ -n "$WORKER_RUNTIME" ] && [ -n "$SITE_CHANGES" ]; then
+            echo '::error::Cloudflare Worker runtime changes must not be mixed with ordinary GitHub Pages/site changes.'
+            echo 'Worker runtime changes:'
+            printf '%s\n' "$WORKER_RUNTIME"
+            echo 'Site changes:'
+            printf '%s\n' "$SITE_CHANGES"
+            exit 1
+          fi
+
+          if [ -n "$WORKER_RUNTIME" ]; then
+            echo '::notice::Worker runtime changed. After pulling locally, deploy with: cd counter-worker; npx wrangler deploy'
+          fi

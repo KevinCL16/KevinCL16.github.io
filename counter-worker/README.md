@@ -1,5 +1,7 @@
 # Permanent pageview counter
 
+> **Deployment boundary:** this Cloudflare Worker is independent of the GitHub Pages site. Ordinary homepage/CV/blog/style changes must not modify `counter-worker/src/**`, `counter-worker/migrations/**`, or Worker config. A GitHub push does not deploy the Worker. After an intentional Worker runtime change, deploy explicitly with `cd counter-worker` followed by `npx wrangler deploy`.
+
 This Worker counts page loads for `https://kevincl16.github.io` and stores only aggregated data:
 
 - one lifetime total, seeded at the current baseline of 4 views;
