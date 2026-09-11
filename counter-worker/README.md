@@ -1,44 +1,43 @@
 # Permanent pageview counter
 
-> **Deployment boundary:** this Cloudflare Worker is independent of the GitHub Pages site. Ordinary homepage/CV/blog/style changes must not modify `counter-worker/src/**`, `counter-worker/migrations/**`, or Worker config. A GitHub push does not deploy the Worker. After an intentional Worker runtime change, deploy explicitly with `cd counter-worker` followed by `npx wrangler deploy`.
+> **Deployment boundary:** this Cloudflare Worker is independent of the GitHub Pages site. Ordinary homepage/CV/blog/style changes must not modify `counter-worker/src/**`, `counter-worker/migrations/**`, or Worker config. A GitHub push does not deploy the Worker. After an intentional Worker runtime change, apply any new D1 migrations and then deploy with Wrangler.
 
-This Worker counts page loads for `https://kevincl16.github.io` and stores only aggregated data:
+This Worker counts successful page loads for `https://kevincl16.github.io` and stores privacy-preserving aggregate analytics:
 
-- one lifetime total, seeded at the current baseline of 4 views;
-- daily counts grouped by country and first-level region/state/province;
-- no raw IP address, user-agent, page URL, or visitor identifier.
+- one lifetime pageview total, seeded at the original baseline of 4 views;
+- daily pageviews grouped by country and first-level region/state/province;
+- approximate daily unique visitors from a browser-generated random ID;
+- filtered automated requests from strong bot/headless/crawler signals;
+- no raw IP address, user-agent, page URL, or raw visitor identifier.
 
-The Worker reads `request.cf.country`, `request.cf.regionCode`, and `request.cf.region`. Cloudflare exposes these geolocation fields to Workers from the visitor IP. The two D1 updates run in one batch so the lifetime total and regional count move together.
+The browser keeps a random anonymous visitor ID in `localStorage`. The Worker never stores that ID directly. It hashes `UTC date + visitor ID` with SHA-256 and stores only the daily hash, so the stored value cannot be used to link the same browser across different days. If localStorage is unavailable, the pageview is still counted but it does not contribute to the approximate unique count.
+
+Bot filtering uses Cloudflare bot-management signals when available and conservative user-agent heuristics for known crawlers, headless browsers, command-line clients, scanners, and monitors. User agents are inspected only in memory and are not written to D1. Filtered requests are excluded from lifetime pageviews and regional counts after advanced tracking begins.
+
+The Worker reads `request.cf.country`, `request.cf.regionCode`, and `request.cf.region`. Cloudflare derives these fields from the request IP, so a VPN/proxy is represented by its exit location.
 
 ## Deploy
 
-1. Create a D1 database named `kevincl16-pageviews`.
-2. Copy `wrangler.toml.example` to `wrangler.toml` and fill in the D1 `database_id`.
-3. Apply the initial migration:
+From `counter-worker/`:
+
+1. Apply any pending D1 migrations:
 
    ```bash
    npx wrangler d1 migrations apply kevincl16-pageviews --remote
    ```
 
-4. Set an administrative token for the summary endpoint:
-
-   ```bash
-   npx wrangler secret put SUMMARY_TOKEN
-   ```
-
-5. Deploy the Worker:
+2. Deploy the Worker:
 
    ```bash
    npx wrangler deploy
    ```
 
-6. Put the deployed Worker URL ending in `/hit` into `pageviewCounterEndpoint` in the site's `script.js`.
+3. If the summary secret has not been configured, set it separately:
 
-The summary endpoint is not called by the public page. For a browser view, open `https://YOUR_WORKER_HOST/dashboard` (the root URL also remains supported) and enter the `SUMMARY_TOKEN`; the token is kept in session storage and is not put into the URL. The raw API can also be queried with the secret token:
+   ```bash
+   npx wrangler secret put SUMMARY_TOKEN
+   ```
 
-```bash
-curl https://YOUR_WORKER_HOST/summary \
-  -H 'Authorization: Bearer YOUR_SUMMARY_TOKEN'
-```
+The public site calls the deployed Worker URL ending in `/hit`. The private dashboard lives at `https://kevincl16.github.io/pageviews.html`; its token is kept in session storage and is not placed in the URL.
 
-The public page already treats `?analytics=off` as a local opt-out. That path returns before both Cloudflare Web Analytics and this counter are loaded, so the owner's opted-out visits are excluded from both systems.
+The public page supports `?analytics=off` as a browser-level opt-out. That disables both Cloudflare Web Analytics and this counter, and removes the anonymous visitor ID from local storage. `?analytics=on` re-enables analytics and creates a fresh random visitor ID on the next counted page load.
