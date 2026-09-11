@@ -58,6 +58,7 @@
   const analyticsSiteId = '8d2373e097ef4c7c8ceb94f0b50b8275';
   const pageviewCounterEndpoint = 'https://kevincl16-page-counter.teslacpp.workers.dev/hit';
   const storageKey = 'disable-cloudflare-analytics';
+  const visitorStorageKey = 'anonymous-pageview-visitor-id';
   const cookieName = 'disable_cloudflare_analytics';
   const params = new URLSearchParams(window.location.search);
   const analyticsMode = params.get('analytics');
@@ -66,6 +67,7 @@
     try {
       if (enabled) {
         localStorage.setItem(storageKey, 'true');
+        localStorage.removeItem(visitorStorageKey);
       } else {
         localStorage.removeItem(storageKey);
       }
@@ -93,6 +95,30 @@
       .some(function (part) { return part === cookieName + '=true'; });
   }
 
+  function getAnonymousVisitorId() {
+    try {
+      const existing = localStorage.getItem(visitorStorageKey);
+      if (existing && /^[A-Za-z0-9_-]{16,128}$/.test(existing)) return existing;
+
+      let id;
+      if (window.crypto && typeof window.crypto.randomUUID === 'function') {
+        id = window.crypto.randomUUID();
+      } else if (window.crypto && typeof window.crypto.getRandomValues === 'function') {
+        const bytes = new Uint8Array(16);
+        window.crypto.getRandomValues(bytes);
+        id = Array.from(bytes, function (byte) {
+          return byte.toString(16).padStart(2, '0');
+        }).join('');
+      }
+
+      if (!id) return null;
+      localStorage.setItem(visitorStorageKey, id);
+      return id;
+    } catch (error) {
+      return null;
+    }
+  }
+
   function cleanAnalyticsParameter() {
     try {
       params.delete('analytics');
@@ -118,6 +144,7 @@
   function countPageview() {
     if (!pageviewCounterEndpoint) return;
 
+    const visitorId = getAnonymousVisitorId();
     fetch(pageviewCounterEndpoint, {
       method: 'POST',
       mode: 'cors',
@@ -125,7 +152,7 @@
       cache: 'no-store',
       keepalive: true,
       headers: { 'Content-Type': 'application/json' },
-      body: '{}'
+      body: JSON.stringify(visitorId ? { visitor_id: visitorId } : {})
     }).catch(function () {
       // Analytics must never interfere with page rendering.
     });
