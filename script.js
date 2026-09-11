@@ -26,7 +26,7 @@
     const harnessPost = document.createElement('a');
     harnessPost.className = 'writing-item';
     harnessPost.dataset.writing = 'harness-learning';
-    harnessPost.href = 'https://kelvinyang.notion.site/The-Harness-Learning-Stack-3d89cede387181d8be4fd3e7b13158d6';
+    harnessPost.href = '/harness-learning.html';
     harnessPost.target = '_blank';
     harnessPost.rel = 'noopener noreferrer';
     harnessPost.innerHTML = [
