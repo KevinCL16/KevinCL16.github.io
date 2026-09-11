@@ -155,6 +155,26 @@ function getRegion(request) {
   return { country, regionCode, region };
 }
 
+function buildDailyHistory(currentTotal, rows) {
+  const normalized = rows.map((row) => ({
+    date: String(row.date),
+    views: Number(row.views) || 0,
+  }));
+  const recordedViews = normalized.reduce((sum, row) => sum + row.views, 0);
+  let runningTotal = currentTotal - recordedViews;
+
+  return normalized.map((row) => {
+    const openingTotal = runningTotal;
+    runningTotal += row.views;
+    return {
+      date: row.date,
+      opening_total: openingTotal,
+      views: row.views,
+      closing_total: runningTotal,
+    };
+  });
+}
+
 export default {
   async fetch(request, env) {
     const origin = request.headers.get("Origin") || "";
@@ -218,10 +238,21 @@ export default {
          GROUP BY country, region_code
          ORDER BY views DESC`
       ).all();
+      const dailyRows = await env.DB.prepare(
+        `SELECT view_date AS date, SUM(views) AS views
+         FROM regional_views
+         GROUP BY view_date
+         ORDER BY view_date ASC`
+      ).all();
+
+      const currentTotal = Number(total?.views ?? 0);
+      const daily = buildDailyHistory(currentTotal, dailyRows.results || []);
 
       return json({
-        total: total?.views ?? 0,
+        total: currentTotal,
         regions: regions.results || [],
+        daily,
+        daily_timezone: "UTC",
       }, 200, origin);
     }
 
