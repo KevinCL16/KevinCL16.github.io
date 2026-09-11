@@ -3,154 +3,251 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Zhiyu Yang — Researcher in AI & Agents</title>
-  <meta name="description" content="Zhiyu Yang is a researcher working on AI agents, long-horizon systems, and human–AI collaboration.">
-  <link rel="stylesheet" href="styles.css?v=academic-v4">
+  <meta name="description" content="Zhiyu Yang is a CS PhD student studying collaborative AI agents that maintain continuity, learn from interaction, and adjust their effort over time.">
+  <meta name="theme-color" content="#f6f5f0">
+  <meta property="og:title" content="Zhiyu Yang — Research">
+  <meta property="og:description" content="Research on collaborative AI agents that unfold, learn, and adapt over time.">
+  <meta property="og:type" content="website">
+  <title>Zhiyu Yang — Research</title>
+  <link rel="stylesheet" href="styles.css?v=academic-compact4">
 </head>
 <body>
   <header class="site-header">
     <div class="wrap header-inner">
-      <a class="brand" href="#top" aria-label="Zhiyu Yang home">Zhiyu Yang</a>
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
-      <nav class="site-nav" id="site-nav" aria-label="Primary">
-        <a href="#research">Research</a>
-        <a href="#publications">Publications</a>
+      <a class="brand" href="#top" aria-label="Zhiyu Yang home">
+        <span class="brand-mark">ZY</span>
+        <span class="brand-name">Zhiyu Yang</span>
+      </a>
+
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span>Menu</span>
+        <span class="menu-line" aria-hidden="true"></span>
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
+        <a href="#focus">Research</a>
+        <a href="#work">Publications</a>
         <a href="#writing">Writing</a>
-        <a href="cv.html">CV</a>
-        <a href="#contact">Contact</a>
+        <a href="#background">Background</a>
+        <a class="nav-external" href="https://github.com/KevinCL16" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
       </nav>
     </div>
   </header>
 
   <main id="top">
-    <section class="hero">
+    <section class="hero section-rule">
       <div class="wrap hero-grid">
-        <div class="hero-copy">
-          <p class="eyebrow">AI Agents · Long-Horizon Systems · Human–AI Collaboration</p>
-          <h1>Building AI systems that can learn, act, and improve over time.</h1>
-          <p class="hero-lede">I study how intelligent systems organize work across long horizons: how agents use tools and memory, how experience changes future behavior, and how humans and AI coordinate as both sides learn.</p>
-          <div class="hero-links">
-            <a class="button primary" href="#publications">Selected work</a>
-            <a class="button secondary" href="cv.html">Curriculum vitae</a>
+        <div class="hero-head">
+          <p class="eyebrow">Zhiyu Yang · CS PhD @ UT Dallas</p>
+          <h1>I build collaborative AI agents that <em>unfold over time.</em></h1>
+        </div>
+
+        <div class="hero-lower">
+          <div class="hero-copy">
+            <p class="hero-lede">I study how agents persist, learn from experience, and spend intelligence where it matters.</p>
+            <p class="hero-history">Research experience: SMU · THUNLP · ModelBest · OpenBMB</p>
+
+            <div class="research-threads" aria-label="Research threads">
+              <p class="research-threads-label">Research threads</p>
+              <div class="research-thread-list">
+                <a class="research-thread" href="#work-matplotagent">
+                  <span class="research-thread-copy">
+                    <span class="research-thread-title">Visual feedback for iterative correction</span>
+                    <span class="research-thread-meta">MatPlotAgent · ACL 2024 Findings</span>
+                  </span>
+                  <span class="research-thread-arrow" aria-hidden="true">↗</span>
+                </a>
+                <a class="research-thread" href="#work-dsdbench">
+                  <span class="research-thread-copy">
+                    <span class="research-thread-title">Debugging beyond isolated errors</span>
+                    <span class="research-thread-meta">DSDBench · EMNLP 2025 Main Oral</span>
+                  </span>
+                  <span class="research-thread-arrow" aria-hidden="true">↗</span>
+                </a>
+                <a class="research-thread" href="#work-compactrag">
+                  <span class="research-thread-copy">
+                    <span class="research-thread-title">Fewer LLM calls for multi-hop reasoning</span>
+                    <span class="research-thread-meta">CompactRAG · WWW 2026</span>
+                  </span>
+                  <span class="research-thread-arrow" aria-hidden="true">↗</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="hero-actions" aria-label="Homepage links">
+              <a class="hero-link hero-link-primary" href="#work">Selected work <span aria-hidden="true">↓</span></a>
+              <a class="hero-link" href="https://scholar.google.com/citations?user=KLbbYf0AAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer">Google Scholar <span aria-hidden="true">↗</span></a>
+              <a class="hero-link" href="#writing">Writing <span aria-hidden="true">↗</span></a>
+              <a class="hero-link" href="cv.html">CV <span aria-hidden="true">↗</span></a>
+              <a class="hero-link" href="https://github.com/KevinCL16" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+            </div>
+          </div>
+
+          <div class="hero-portrait-wrap">
+            <div class="portrait-frame">
+              <img class="hero-portrait" src="assets/portrait.jpg" alt="Portrait of Zhiyu Yang">
+            </div>
+            <p class="portrait-caption"><span class="caption-dot"></span> AI agents, real-world evaluation, and human–AI collaboration.</p>
           </div>
         </div>
-        <aside class="hero-card" aria-label="Research profile">
-          <div class="portrait-frame">
-            <img src="assets/profile.jpg" alt="Portrait of Zhiyu Yang">
-          </div>
-          <div class="profile-meta">
-            <strong>Zhiyu Yang</strong>
-            <span>Computer Science · UT Dallas</span>
-            <a href="mailto:kelvin.yangzhiyu@outlook.com">kelvin.yangzhiyu@outlook.com</a>
-          </div>
-        </aside>
       </div>
     </section>
 
-    <section class="section" id="research">
+    <section class="section section-rule" id="focus">
       <div class="wrap">
         <div class="section-heading">
-          <p class="eyebrow">Research</p>
-          <h2>How should intelligent systems accumulate experience?</h2>
-          <p>I work across agent runtimes, long-horizon state, and the organization of human–AI work. The recurring question is how experience from one task should change what happens on the next.</p>
+          <p class="section-label">Research</p>
+          <div>
+            <h2>Agents that persist, learn, and adapt.</h2>
+            <p class="section-intro">The common thread is continuity: how an agent keeps its bearings, learns from experience, and adjusts as the task, context, and relationship with a person evolve.</p>
+          </div>
         </div>
+
         <div class="focus-grid">
-          <article class="focus-card">
-            <span class="focus-number">01</span>
-            <h3>Long-Horizon Agents</h3>
-            <p>State, memory, recovery, and runtime structure for agents that operate across extended tasks and interruptions.</p>
+          <article class="focus-item">
+            <h3>Persistent agents</h3>
+            <p>Maintaining context, state, and task continuity across long-running human–agent work.</p>
           </article>
-          <article class="focus-card">
-            <span class="focus-number">02</span>
-            <h3>Experience & Work Policies</h3>
-            <p>How trajectories, feedback, and reusable skills can reshape the way future tasks are reasoned about, verified, delegated, and stopped.</p>
+          <article class="focus-item">
+            <h3>Learning from interaction</h3>
+            <p>Turning real feedback, corrections, and outcomes into signals that can improve future behavior.</p>
           </article>
-          <article class="focus-card">
-            <span class="focus-number">03</span>
-            <h3>Human–AI Systems</h3>
-            <p>How repeated collaboration changes expertise, supervision, and the distribution of cognitive work between humans and AI.</p>
+          <article class="focus-item">
+            <h3>Adaptive agent systems</h3>
+            <p>Helping agents adjust their behavior and effort as tasks, feedback, and collaboration with people evolve.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section section-tint" id="publications">
+    <section class="section section-rule" id="work">
       <div class="wrap">
-        <div class="section-heading compact">
-          <p class="eyebrow">Selected publications</p>
-          <h2>Recent work</h2>
+        <div class="section-heading section-heading-inline">
+          <div>
+            <p class="section-label">Selected work</p>
+            <h2>Selected publications.</h2>
+          </div>
+          <a class="text-link" href="https://scholar.google.com/citations?user=KLbbYf0AAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer">All publications <span aria-hidden="true">↗</span></a>
         </div>
-        <div class="publication-list">
-          <article class="publication-item">
-            <div class="pub-year">2026</div>
-            <div class="pub-main">
-              <h3>CompactRAG</h3>
-              <p class="pub-venue">The Web Conference 2026</p>
-              <p>Collaborative work on efficient retrieval-augmented generation.</p>
+
+        <div class="work-list">
+          <article class="work-item" id="work-dsdbench">
+            <div class="work-main">
+              <div class="work-title-row">
+                <h3>DSDBench</h3>
+                <p class="venue">EMNLP 2025 Main · Oral</p>
+              </div>
+              <p class="work-full-title">Why Stop at One Error? Benchmarking LLMs as Data Science Code Debuggers for Multi-Hop and Multi-Bug Errors</p>
+              <p class="work-description">A data-science debugging benchmark for tracing multi-hop logical errors and resolving multiple bugs in realistic code.</p>
+              <div class="work-links">
+                <a href="https://aclanthology.org/2025.emnlp-main.878/" target="_blank" rel="noopener noreferrer">ACL Anthology <span aria-hidden="true">↗</span></a>
+                <a href="https://arxiv.org/abs/2503.22388" target="_blank" rel="noopener noreferrer">arXiv <span aria-hidden="true">↗</span></a>
+                <a href="https://github.com/KevinCL16/DSDBench" target="_blank" rel="noopener noreferrer">Code <span aria-hidden="true">↗</span></a>
+              </div>
             </div>
           </article>
-          <article class="publication-item">
-            <div class="pub-year">2025</div>
-            <div class="pub-main">
-              <h3>DSDBench</h3>
-              <p class="pub-venue">EMNLP 2025 · Oral</p>
-              <p>A benchmark for evaluating data-science agents on realistic end-to-end tasks.</p>
+
+          <article class="work-item" id="work-matplotagent">
+            <div class="work-main">
+              <div class="work-title-row">
+                <h3>MatPlotAgent</h3>
+                <p class="venue">ACL 2024 Findings</p>
+              </div>
+              <p class="work-full-title">Method and Evaluation for LLM-Based Agentic Scientific Data Visualization</p>
+              <p class="work-description">A visual-feedback agent that turns natural-language requests into scientific visualizations, then uses the rendered chart to repair its own code.</p>
+              <div class="work-links">
+                <a href="https://aclanthology.org/2024.findings-acl.701/" target="_blank" rel="noopener noreferrer">ACL Anthology <span aria-hidden="true">↗</span></a>
+                <a href="https://arxiv.org/abs/2402.11453" target="_blank" rel="noopener noreferrer">arXiv <span aria-hidden="true">↗</span></a>
+                <a href="https://github.com/thunlp/MatPlotAgent" target="_blank" rel="noopener noreferrer">Code <span aria-hidden="true">↗</span></a>
+              </div>
             </div>
           </article>
-          <article class="publication-item">
-            <div class="pub-year">2024</div>
-            <div class="pub-main">
-              <h3>MatPlotAgent</h3>
-              <p class="pub-venue">ACL 2024 Findings</p>
-              <p>An agentic system for generating and iteratively repairing scientific visualizations.</p>
-            </div>
-          </article>
-          <article class="publication-item">
-            <div class="pub-year">2024</div>
-            <div class="pub-main">
-              <h3>UltraLink</h3>
-              <p class="pub-venue">ACL 2024</p>
-              <p>Research on linking and structuring information with large language models.</p>
-            </div>
-          </article>
-          <article class="publication-item">
-            <div class="pub-year">2024</div>
-            <div class="pub-main">
-              <h3>CCL</h3>
-              <p class="pub-venue">2024</p>
-              <p>Work on language-model reasoning and learning.</p>
+
+          <article class="work-item" id="work-compactrag">
+            <div class="work-main">
+              <div class="work-title-row">
+                <h3>CompactRAG</h3>
+                <p class="venue">WWW 2026</p>
+              </div>
+              <p class="work-full-title">Reducing LLM Calls and Token Overhead in Multi-Hop Question Answering</p>
+              <p class="work-description">A cost-efficient multi-hop reasoning framework that separates offline corpus restructuring from online inference and keeps the main LLM to two calls.</p>
+              <div class="work-links">
+                <a href="https://arxiv.org/abs/2602.05728" target="_blank" rel="noopener noreferrer">arXiv <span aria-hidden="true">↗</span></a>
+                <a href="https://dl.acm.org/doi/10.1145/3774904.3792512" target="_blank" rel="noopener noreferrer">ACM DL <span aria-hidden="true">↗</span></a>
+                <a href="https://github.com/How-Young-X/CompactRAG" target="_blank" rel="noopener noreferrer">Code <span aria-hidden="true">↗</span></a>
+              </div>
             </div>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section" id="writing">
+    <section class="section section-rule" id="writing">
       <div class="wrap">
-        <div class="section-heading compact">
-          <p class="eyebrow">Writing</p>
-          <h2>Notes & essays</h2>
+        <div class="section-heading section-heading-inline">
+          <div>
+            <p class="section-label">Writing</p>
+            <h2>A working notebook.</h2>
+          </div>
+          <a class="text-link" href="https://kelvinyang.notion.site/AI-3b09cede387180fbb669f3065c483746" target="_blank" rel="noopener noreferrer">Open the Notion notebook <span aria-hidden="true">↗</span></a>
         </div>
+
         <div class="writing-grid writing-grid-single">
           <a class="writing-item" href="https://kelvinyang.notion.site/AI-3b09cede387180fbb669f3065c483746" target="_blank" rel="noopener noreferrer">
-            <div class="writing-meta"><span>2026</span><span>Essay</span></div>
+            <div class="writing-meta"><span>Aug 2026</span><span>Essay</span></div>
             <h3>AI 的下一场竞争，不是模型能力，而是经验循环</h3>
-            <p>关于长期智能、经验循环，以及为什么未来的竞争会从单次能力转向跨任务积累。</p>
+            <p>关于真实人机交互经验如何被记录、提炼，并重新进入个人或组织的学习循环。</p>
             <span class="writing-arrow" aria-hidden="true">↗</span>
           </a>
         </div>
       </div>
     </section>
 
-    <section class="section section-tint" id="about">
-      <div class="wrap about-grid">
+    <section class="section section-rule" id="background">
+      <div class="wrap background-grid">
         <div>
-          <p class="eyebrow">About</p>
-          <h2>Researching systems that have a history.</h2>
+          <p class="section-label">Background</p>
+          <h2>Academic and research background.</h2>
+          <p class="section-intro">Education and research experience.</p>
         </div>
-        <div class="about-copy">
-          <p>I am a computer science researcher at UT Dallas. My work spans language-model agents, scientific automation, retrieval, and long-horizon intelligent systems.</p>
-          <p>Across these projects, I am increasingly interested in a shared problem: once an AI system has completed many tasks, what exactly should it have learned from them — and how should that experience change the way the next task is organized?</p>
+
+        <div class="timeline" aria-label="Education and research experience">
+          <div class="timeline-item">
+            <time>2025–</time>
+            <div><h3>University of Texas at Dallas</h3><p>CS PhD</p></div>
+          </div>
+          <div class="timeline-item">
+            <time>2024–2025</time>
+            <div>
+              <h3>Singapore Management University</h3>
+              <p>Research Assistant</p>
+              <p class="mentor-line">
+                Mentored by
+                <a href="https://dengyang17.github.io/" target="_blank" rel="noopener noreferrer">Yang Deng</a>
+                <span aria-hidden="true">↗</span>
+              </p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <time>2023–2024</time>
+            <div>
+              <h3>THUNLP · ModelBest · OpenBMB</h3>
+              <p>Research Intern</p>
+              <p class="mentor-line">
+                Mentored by
+                <a href="https://scholar.google.com/citations?user=5vm5yAMAAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer">Shuo Wang</a>
+                <span aria-hidden="true">↗</span>
+              </p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <time>2021–2024</time>
+            <div><h3>Beijing Language and Culture University</h3><p>M.Eng. in Computer Science and Technology</p></div>
+          </div>
+          <div class="timeline-item">
+            <time>2017–2021</time>
+            <div><h3>Sichuan University</h3><p>B.Eng. in Computer Science and Technology</p></div>
+          </div>
         </div>
       </div>
     </section>
