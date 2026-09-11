@@ -7,7 +7,7 @@
   <meta name="robots" content="noindex,nofollow">
   <style>
     :root{color-scheme:light;--paper:#f6f5f0;--ink:#20211e;--muted:#696a63;--line:#d8d7ce;--accent:#a4573f}
-    *{box-sizing:border-box}body{margin:0;color:var(--ink);background:var(--paper);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}main{width:min(760px,calc(100% - 36px));margin:0 auto;padding:72px 0}h1{margin:0;font:400 42px/1.1 Georgia,"Times New Roman",serif;letter-spacing:-.04em}.eyebrow{margin:0 0 18px;color:var(--accent);font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}.muted{color:var(--muted)}.health{margin:20px 0 0;font-size:13px}form{display:flex;gap:10px;margin-top:28px}input,button{border:1px solid var(--line);border-radius:6px;padding:10px 13px;font:inherit}input{min-width:280px;background:#fffefa}button{color:#fffefa;border-color:var(--ink);background:var(--ink);cursor:pointer}#error{min-height:25px;color:var(--accent)}.summary{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:36px 0 42px}.metric{padding:20px;border:1px solid var(--line);background:#fffefa}.metric-label{color:var(--muted);font-size:11px;letter-spacing:.12em;text-transform:uppercase}.metric-value{margin-top:5px;font:400 42px/1 Georgia,"Times New Roman",serif}table{width:100%;border-collapse:collapse;margin-top:18px}th,td{padding:11px 8px;border-bottom:1px solid var(--line);text-align:left}th{color:var(--muted);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}td:last-child,th:last-child{text-align:right}@media(max-width:560px){main{padding:44px 0}h1{font-size:36px}form{display:block}input{width:100%}button{margin-top:10px}.summary{grid-template-columns:1fr}}
+    *{box-sizing:border-box}body{margin:0;color:var(--ink);background:var(--paper);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}main{width:min(820px,calc(100% - 36px));margin:0 auto;padding:72px 0}h1{margin:0;font:400 42px/1.1 Georgia,"Times New Roman",serif;letter-spacing:-.04em}h2{margin-top:42px}.eyebrow{margin:0 0 18px;color:var(--accent);font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}.muted{color:var(--muted)}.health{margin:20px 0 0;font-size:13px}form{display:flex;gap:10px;margin-top:28px}input,button{border:1px solid var(--line);border-radius:6px;padding:10px 13px;font:inherit}input{min-width:280px;background:#fffefa}button{color:#fffefa;border-color:var(--ink);background:var(--ink);cursor:pointer}#error{min-height:25px;color:var(--accent)}.summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:36px 0 42px}.metric{padding:20px;border:1px solid var(--line);background:#fffefa}.metric-label{color:var(--muted);font-size:11px;letter-spacing:.12em;text-transform:uppercase}.metric-value{margin-top:5px;font:400 42px/1 Georgia,"Times New Roman",serif}table{width:100%;border-collapse:collapse;margin-top:18px}th,td{padding:11px 8px;border-bottom:1px solid var(--line);text-align:left}th{color:var(--muted);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}.numeric{text-align:right}#daily-table th:not(:first-child),#daily-table td:not(:first-child){text-align:right}#regions td:last-child,#regions-table th:last-child{text-align:right}.table-note{margin:8px 0 0;font-size:13px;color:var(--muted)}@media(max-width:560px){main{padding:44px 0}h1{font-size:36px}form{display:block}input{width:100%}button{margin-top:10px}.summary{grid-template-columns:1fr}table{font-size:14px}}
   </style>
 </head>
 <body>
@@ -24,10 +24,19 @@
     <section id="stats" hidden>
       <div class="summary">
         <div class="metric"><div class="metric-label">Lifetime views</div><div class="metric-value" id="total">—</div></div>
+        <div class="metric"><div class="metric-label">Latest daily growth</div><div class="metric-value" id="latest-growth">—</div></div>
         <div class="metric"><div class="metric-label">Regions</div><div class="metric-value" id="region-count">—</div></div>
       </div>
+
+      <h2>Daily growth</h2>
+      <p class="table-note">00:00 totals are reconstructed from the existing daily counter buckets. Current historical buckets use UTC dates.</p>
+      <table id="daily-table">
+        <thead><tr><th>Date</th><th>00:00 total</th><th>Growth</th><th>End total</th></tr></thead>
+        <tbody id="daily"></tbody>
+      </table>
+
       <h2>Views by region</h2>
-      <table><thead><tr><th>Country</th><th>State / province</th><th>Views</th></tr></thead><tbody id="regions"></tbody></table>
+      <table id="regions-table"><thead><tr><th>Country</th><th>State / province</th><th>Views</th></tr></thead><tbody id="regions"></tbody></table>
     </section>
   </main>
   <script>
@@ -38,26 +47,17 @@
     const stats=document.querySelector('#stats');
     const error=document.querySelector('#error');
     const total=document.querySelector('#total');
+    const latestGrowth=document.querySelector('#latest-growth');
     const regionCount=document.querySelector('#region-count');
+    const daily=document.querySelector('#daily');
     const regions=document.querySelector('#regions');
 
     async function checkHealth(){
       try{
-        // The deployed Worker may predate the newer /health route. A 401 from
-        // /summary is the expected unauthenticated response and proves it is up.
         const response=await fetch(WORKER+'/summary',{cache:'no-store'});
-        if(response.status===401){
-          health.textContent='Worker online';
-          return;
-        }
-        if(response.status===503){
-          health.textContent='Worker online · D1 binding missing';
-          return;
-        }
-        if(response.ok){
-          health.textContent='Worker online';
-          return;
-        }
+        if(response.status===401){health.textContent='Worker online';return}
+        if(response.status===503){health.textContent='Worker online · D1 binding missing';return}
+        if(response.ok){health.textContent='Worker online';return}
         health.textContent='Worker reachable · HTTP '+response.status;
       }catch(e){
         health.textContent='Worker unavailable';
@@ -70,13 +70,27 @@
       return response.json();
     }
 
+    function addCells(row,values){
+      values.forEach(value=>{const cell=document.createElement('td');cell.textContent=value;row.appendChild(cell)});
+    }
+
     function render(data){
       total.textContent=data.total;
       regionCount.textContent=data.regions.length;
+
+      const history=Array.isArray(data.daily)?data.daily:[];
+      latestGrowth.textContent=history.length?'+'+history[history.length-1].views:'—';
+      daily.replaceChildren();
+      [...history].reverse().forEach(item=>{
+        const row=document.createElement('tr');
+        addCells(row,[item.date,item.opening_total,'+'+item.views,item.closing_total]);
+        daily.appendChild(row);
+      });
+
       regions.replaceChildren();
       data.regions.forEach(item=>{
         const row=document.createElement('tr');
-        [item.country,item.region,item.views].forEach(value=>{const cell=document.createElement('td');cell.textContent=value;row.appendChild(cell)});
+        addCells(row,[item.country,item.region,item.views]);
         regions.appendChild(row);
       });
       stats.hidden=false;
