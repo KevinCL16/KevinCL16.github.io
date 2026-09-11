@@ -19,6 +19,40 @@
   const year = document.querySelector('#current-year');
   if (year) year.textContent = new Date().getFullYear();
 
+  const writingGrid = document.querySelector('#writing .writing-grid');
+  if (writingGrid && !writingGrid.querySelector('[data-writing="harness-learning"]')) {
+    writingGrid.classList.remove('writing-grid-single');
+
+    const harnessPost = document.createElement('a');
+    harnessPost.className = 'writing-item';
+    harnessPost.dataset.writing = 'harness-learning';
+    harnessPost.href = 'https://kelvinyang.notion.site/The-Harness-Learning-Stack-3d89cede387181d8be4fd3e7b13158d6';
+    harnessPost.target = '_blank';
+    harnessPost.rel = 'noopener noreferrer';
+    harnessPost.innerHTML = [
+      '<div class="writing-meta"><span>Sep 2026</span><span>Essay</span></div>',
+      '<h3>The Harness Learning Stack</h3>',
+      '<p>Why agent development may grow a post-training-like stack around environments, trajectories, graders, credit assignment, and harness updates.</p>',
+      '<span class="writing-arrow" aria-hidden="true">↗</span>'
+    ].join('');
+
+    writingGrid.prepend(harnessPost);
+
+    const desktopWriting = window.matchMedia('(min-width: 761px)');
+    const syncWritingColumns = function () {
+      writingGrid.style.gridTemplateColumns = desktopWriting.matches
+        ? 'repeat(2, minmax(0, 1fr))'
+        : '';
+    };
+
+    syncWritingColumns();
+    if (desktopWriting.addEventListener) {
+      desktopWriting.addEventListener('change', syncWritingColumns);
+    } else if (desktopWriting.addListener) {
+      desktopWriting.addListener(syncWritingColumns);
+    }
+  }
+
   // Both analytics systems share this browser-level opt-out.
   // The Cloudflare beacon token is public client-side configuration, not a secret.
   const analyticsSiteId = '8d2373e097ef4c7c8ceb94f0b50b8275';
