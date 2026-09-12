@@ -1,0 +1,22 @@
+name: Worker probe
+
+on: [push]
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Probe live Cloudflare Worker
+        shell: bash
+        run: |
+          set -x
+          BASE='https://kevincl16-page-counter.teslacpp.workers.dev'
+          echo '=== /health ==='
+          curl -i -sS --max-time 20 "$BASE/health" || true
+          echo
+          echo '=== /summary (unauthenticated; expected 401) ==='
+          curl -i -sS --max-time 20 "$BASE/summary" || true
+          echo
+          echo '=== / ==='
+          curl -i -sS --max-time 20 "$BASE/" || true
+          echo
