@@ -19,64 +19,55 @@
   const year = document.querySelector('#current-year');
   if (year) year.textContent = new Date().getFullYear();
 
-  const writingGrid = document.querySelector('#writing .writing-grid');
-  if (writingGrid && !writingGrid.querySelector('[data-writing="harness-learning"]')) {
-    writingGrid.classList.remove('writing-grid-single');
+  const newsList = document.querySelector('#news .news-list');
+  if (newsList && !newsList.querySelector('[data-news="organizing-intelligence-over-time"]')) {
+    const entries = [
+      {
+        id: 'organizing-intelligence-over-time',
+        date: 'Sep 2026',
+        type: 'Survey · Position',
+        title: 'Organizing Intelligence Over Time',
+        summary: 'Human–AI collaboration as joint cognitive development.',
+        href: '/organizing-intelligence-over-time.html',
+        external: false
+      },
+      {
+        id: 'harness-learning',
+        date: 'Sep 2026',
+        type: 'Essay',
+        title: 'The Harness Learning Stack',
+        summary: 'A post-training-like stack around environments, trajectories, graders, credit assignment, and harness updates.',
+        href: '/harness-learning.html',
+        external: false
+      },
+      {
+        id: 'awesome-longitudinal-ai-agents',
+        date: 'Sep 2026',
+        type: 'Literature map',
+        title: 'Awesome Longitudinal AI Agents',
+        summary: 'A curated map of research on agents and Human–AI systems that change through accumulated experience.',
+        href: 'https://github.com/KevinCL16/awesome-longitudinal-ai-agents',
+        external: true
+      }
+    ];
 
-    const awesomeList = document.createElement('a');
-    awesomeList.className = 'writing-item';
-    awesomeList.dataset.writing = 'awesome-longitudinal-ai-agents';
-    awesomeList.href = 'https://github.com/KevinCL16/awesome-longitudinal-ai-agents';
-    awesomeList.target = '_blank';
-    awesomeList.rel = 'noopener noreferrer';
-    awesomeList.innerHTML = [
-      '<div class="writing-meta"><span>Sep 2026</span><span>Literature map</span></div>',
-      '<h3>Awesome Longitudinal AI Agents</h3>',
-      '<p>A curated map of research on agents and Human–AI systems where accumulated experience changes later behavior, coordination, or capability.</p>',
-      '<span class="writing-arrow" aria-hidden="true">↗</span>'
-    ].join('');
-
-    const surveyPage = document.createElement('a');
-    surveyPage.className = 'writing-item';
-    surveyPage.dataset.writing = 'organizing-intelligence-over-time';
-    surveyPage.href = '/organizing-intelligence-over-time.html';
-    surveyPage.innerHTML = [
-      '<div class="writing-meta"><span>Sep 2026</span><span>Survey · Position</span></div>',
-      '<h3>Organizing Intelligence Over Time</h3>',
-      '<p>Human–AI collaboration as joint cognitive development: how present work organization shapes future human, machine, and joint capability.</p>',
-      '<span class="writing-arrow" aria-hidden="true">↗</span>'
-    ].join('');
-
-    const harnessPost = document.createElement('a');
-    harnessPost.className = 'writing-item';
-    harnessPost.dataset.writing = 'harness-learning';
-    harnessPost.href = '/harness-learning.html';
-    harnessPost.target = '_blank';
-    harnessPost.rel = 'noopener noreferrer';
-    harnessPost.innerHTML = [
-      '<div class="writing-meta"><span>Sep 2026</span><span>Essay</span></div>',
-      '<h3>The Harness Learning Stack</h3>',
-      '<p>Why agent development may grow a post-training-like stack around environments, trajectories, graders, credit assignment, and harness updates.</p>',
-      '<span class="writing-arrow" aria-hidden="true">↗</span>'
-    ].join('');
-
-    writingGrid.prepend(awesomeList);
-    writingGrid.prepend(harnessPost);
-    writingGrid.prepend(surveyPage);
-
-    const desktopWriting = window.matchMedia('(min-width: 761px)');
-    const syncWritingColumns = function () {
-      writingGrid.style.gridTemplateColumns = desktopWriting.matches
-        ? 'repeat(2, minmax(0, 1fr))'
-        : '';
-    };
-
-    syncWritingColumns();
-    if (desktopWriting.addEventListener) {
-      desktopWriting.addEventListener('change', syncWritingColumns);
-    } else if (desktopWriting.addListener) {
-      desktopWriting.addListener(syncWritingColumns);
-    }
+    entries.slice().reverse().forEach(function (entry) {
+      const item = document.createElement('a');
+      item.className = 'news-item';
+      item.dataset.news = entry.id;
+      item.href = entry.href;
+      if (entry.external) {
+        item.target = '_blank';
+        item.rel = 'noopener noreferrer';
+      }
+      item.innerHTML = [
+        '<time class="news-date">' + entry.date + '</time>',
+        '<span class="news-type">' + entry.type + '</span>',
+        '<span class="news-text"><strong>' + entry.title + '</strong><span class="news-summary"> — ' + entry.summary + '</span></span>',
+        '<span class="news-arrow" aria-hidden="true">↗</span>'
+      ].join('');
+      newsList.prepend(item);
+    });
   }
 
   // Both analytics systems share this browser-level opt-out.
