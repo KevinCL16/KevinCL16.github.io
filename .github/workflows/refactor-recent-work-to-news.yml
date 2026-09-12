@@ -1,0 +1,198 @@
+name: Refactor recent work to news
+
+on:
+  push:
+    paths:
+      - '.github/workflows/refactor-recent-work-to-news.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  refactor-news:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Refactor homepage section
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          # index.html
+          p = Path('index.html')
+          text = p.read_text(encoding='utf-8')
+          text = text.replace('<a href="#writing">Recent Work</a>', '<a href="#news">News</a>')
+          text = text.replace('<a class="hero-link" href="#writing">Recent Work <span aria-hidden="true">↗</span></a>', '<a class="hero-link" href="#news">News <span aria-hidden="true">↗</span></a>')
+
+          old_section = '''    <section class="section section-rule" id="writing">
+      <div class="wrap">
+        <div class="section-heading section-heading-inline">
+          <div>
+            <p class="section-label">Recent work</p>
+            <h2>Research, notes, and resources.</h2>
+          </div>
+          <a class="text-link" href="https://kelvinyang.notion.site/AI-3b09cede387180fbb669f3065c483746" target="_blank" rel="noopener noreferrer">Notes on Notion <span aria-hidden="true">↗</span></a>
+        </div>
+
+        <div class="writing-grid writing-grid-single">
+          <a class="writing-item" href="https://kelvinyang.notion.site/AI-3b09cede387180fbb669f3065c483746" target="_blank" rel="noopener noreferrer">
+            <div class="writing-meta"><span>Aug 2026</span><span>Essay</span></div>
+            <h3>AI 的下一场竞争，不是模型能力，而是经验循环</h3>
+            <p>关于真实人机交互经验如何被记录、提炼，并重新进入个人或组织的学习循环。</p>
+            <span class="writing-arrow" aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
+    </section>'''
+
+          new_section = '''    <section class="section section-rule" id="news">
+      <div class="wrap">
+        <div class="section-heading section-heading-inline news-heading">
+          <div>
+            <p class="section-label">News</p>
+            <h2>Recent updates.</h2>
+          </div>
+          <a class="text-link" href="https://kelvinyang.notion.site/AI-3b09cede387180fbb669f3065c483746" target="_blank" rel="noopener noreferrer">Notes on Notion <span aria-hidden="true">↗</span></a>
+        </div>
+
+        <div class="news-list">
+          <a class="news-item" href="https://kelvinyang.notion.site/AI-3b09cede387180fbb669f3065c483746" target="_blank" rel="noopener noreferrer">
+            <time class="news-date">Aug 2026</time>
+            <span class="news-type">Essay</span>
+            <span class="news-text"><strong>AI 的下一场竞争，不是模型能力，而是经验循环</strong><span class="news-summary"> — 关于真实人机交互经验如何被记录、提炼，并重新进入个人或组织的学习循环。</span></span>
+            <span class="news-arrow" aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
+    </section>'''
+
+          if old_section not in text:
+              raise SystemExit('Recent work section target not found')
+          text = text.replace(old_section, new_section, 1)
+          p.write_text(text, encoding='utf-8')
+
+          # script.js
+          p = Path('script.js')
+          text = p.read_text(encoding='utf-8')
+          start = text.find("  const writingGrid = document.querySelector('#writing .writing-grid');")
+          end = text.find("\n\n  // Both analytics systems share this browser-level opt-out.", start)
+          if start == -1 or end == -1:
+              raise SystemExit('Dynamic recent-work block not found')
+
+          new_block = '''  const newsList = document.querySelector('#news .news-list');
+  if (newsList && !newsList.querySelector('[data-news="organizing-intelligence-over-time"]')) {
+    const entries = [
+      {
+        id: 'organizing-intelligence-over-time',
+        date: 'Sep 2026',
+        type: 'Survey · Position',
+        title: 'Organizing Intelligence Over Time',
+        summary: 'Human–AI collaboration as joint cognitive development.',
+        href: '/organizing-intelligence-over-time.html',
+        external: false
+      },
+      {
+        id: 'harness-learning',
+        date: 'Sep 2026',
+        type: 'Essay',
+        title: 'The Harness Learning Stack',
+        summary: 'A post-training-like stack around environments, trajectories, graders, credit assignment, and harness updates.',
+        href: '/harness-learning.html',
+        external: false
+      },
+      {
+        id: 'awesome-longitudinal-ai-agents',
+        date: 'Sep 2026',
+        type: 'Literature map',
+        title: 'Awesome Longitudinal AI Agents',
+        summary: 'A curated map of research on agents and Human–AI systems that change through accumulated experience.',
+        href: 'https://github.com/KevinCL16/awesome-longitudinal-ai-agents',
+        external: true
+      }
+    ];
+
+    entries.slice().reverse().forEach(function (entry) {
+      const item = document.createElement('a');
+      item.className = 'news-item';
+      item.dataset.news = entry.id;
+      item.href = entry.href;
+      if (entry.external) {
+        item.target = '_blank';
+        item.rel = 'noopener noreferrer';
+      }
+      item.innerHTML = [
+        '<time class="news-date">' + entry.date + '</time>',
+        '<span class="news-type">' + entry.type + '</span>',
+        '<span class="news-text"><strong>' + entry.title + '</strong><span class="news-summary"> — ' + entry.summary + '</span></span>',
+        '<span class="news-arrow" aria-hidden="true">↗</span>'
+      ].join('');
+      newsList.prepend(item);
+    });
+  }'''
+          text = text[:start] + new_block + text[end:]
+          p.write_text(text, encoding='utf-8')
+
+          # styles.css: append compact news styles; old writing styles can remain unused.
+          p = Path('styles.css')
+          css = p.read_text(encoding='utf-8')
+          marker = '/* Compact professor-style news feed */'
+          if marker not in css:
+              css += '''\n\n/* Compact professor-style news feed */
+.news-heading { margin-bottom: 28px; }
+.news-list { border-top: 1px solid var(--line); }
+.news-item {
+  display: grid;
+  grid-template-columns: 88px 118px minmax(0, 1fr) 18px;
+  gap: 18px;
+  align-items: baseline;
+  padding: 13px 0 14px;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
+  transition: color .2s ease, background .2s ease;
+}
+.news-item:hover { color: var(--accent-dark); }
+.news-date {
+  color: var(--faint);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.news-type {
+  color: var(--accent);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+}
+.news-text {
+  min-width: 0;
+  font-size: 14px;
+  line-height: 1.45;
+}
+.news-text strong { font-weight: 650; letter-spacing: -.012em; }
+.news-summary { color: var(--muted); font-weight: 400; }
+.news-arrow { color: var(--accent); font-size: 14px; text-align: right; }
+
+@media (max-width: 760px) {
+  .news-heading { margin-bottom: 22px; }
+  .news-item {
+    grid-template-columns: 78px minmax(0, 1fr) 16px;
+    gap: 10px 12px;
+    padding: 14px 0 15px;
+  }
+  .news-type { grid-column: 2; grid-row: 1; }
+  .news-text { grid-column: 1 / 3; grid-row: 2; font-size: 14px; }
+  .news-arrow { grid-column: 3; grid-row: 1 / 3; align-self: center; }
+  .news-summary { display: inline; }
+}
+'''
+              p.write_text(css, encoding='utf-8')
+          PY
+      - name: Commit refactor
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add index.html script.js styles.css
+          git commit -m "style: turn recent work into compact news feed"
+          git push
