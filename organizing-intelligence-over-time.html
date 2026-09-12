@@ -3,242 +3,280 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Organizing Intelligence Over Time: a survey and position on Human–AI collaboration as joint cognitive development, connecting human cognition, human–automation, HCI, and longitudinal AI agents.">
-  <meta name="theme-color" content="#f6f5f0">
+  <meta name="description" content="Organizing Intelligence Over Time: Human–AI Collaboration as Joint Cognitive Development — survey companion page.">
   <meta property="og:title" content="Organizing Intelligence Over Time">
-  <meta property="og:description" content="How humans and AI work together today changes what each can do tomorrow.">
+  <meta property="og:description" content="Human–AI Collaboration as Joint Cognitive Development">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://kevincl16.github.io/organizing-intelligence-over-time.html">
-  <meta name="twitter:card" content="summary_large_image">
   <title>Organizing Intelligence Over Time — Zhiyu Yang</title>
   <link rel="canonical" href="https://kevincl16.github.io/organizing-intelligence-over-time.html">
-  <link rel="stylesheet" href="styles.css?v=academic-compact4">
   <style>
     :root {
-      --paper-ink: #171714;
-      --paper-muted: #66655f;
-      --paper-line: #d8d6cd;
-      --paper-soft: #eceae2;
-      --paper-accent: #254b3f;
-      --paper-accent-soft: #e4ece7;
+      --ink: #171717;
+      --muted: #5f6368;
+      --line: #d9dde3;
+      --soft: #f6f7f9;
+      --accent: #1f5a94;
+      --max: 920px;
     }
 
-    body { background: #f6f5f0; color: var(--paper-ink); }
-    .paper-page { overflow: hidden; }
-    .paper-wrap { width: min(1120px, calc(100% - 44px)); margin: 0 auto; }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 320px;
+      overflow-x: hidden;
+      overflow-y: auto;
+      color: var(--ink);
+      background: #fff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+    }
+    a { color: var(--accent); text-underline-offset: 0.16em; }
+    a:hover { text-decoration-thickness: 2px; }
 
-    .paper-nav {
+    .topbar {
       position: sticky;
       top: 0;
-      z-index: 20;
-      border-bottom: 1px solid rgba(23,23,20,.12);
-      background: rgba(246,245,240,.92);
-      backdrop-filter: blur(14px);
+      z-index: 10;
+      background: rgba(255,255,255,.96);
+      border-bottom: 1px solid var(--line);
     }
-    .paper-nav-inner {
-      min-height: 66px;
+    .topbar-inner {
+      width: min(var(--max), calc(100% - 36px));
+      min-height: 54px;
+      margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 24px;
+      font-size: 14px;
     }
-    .paper-brand {
-      color: inherit;
-      text-decoration: none;
-      font-weight: 700;
-      letter-spacing: -.02em;
-    }
-    .paper-nav-links { display: flex; gap: 18px; flex-wrap: wrap; }
-    .paper-nav-links a {
-      color: var(--paper-muted);
-      text-decoration: none;
-      font-size: .88rem;
-    }
-    .paper-nav-links a:hover { color: var(--paper-ink); }
+    .topbar a { color: var(--ink); text-decoration: none; }
+    .topbar .author-home { font-weight: 650; }
+    .topnav { display: flex; gap: 20px; }
+    .topnav a { color: var(--muted); }
+    .topnav a:hover { color: var(--ink); }
 
-    .paper-hero { padding: 88px 0 66px; border-bottom: 1px solid var(--paper-line); }
-    .paper-kicker {
-      margin: 0 0 22px;
-      color: var(--paper-accent);
-      font-size: .78rem;
-      font-weight: 700;
-      letter-spacing: .12em;
+    main {
+      width: min(var(--max), calc(100% - 36px));
+      margin: 0 auto;
+    }
+
+    .paper-head {
+      padding: 72px 0 46px;
+      text-align: center;
+      border-bottom: 1px solid var(--line);
+    }
+    .paper-type {
+      margin: 0 0 16px;
+      color: var(--muted);
+      font-size: 13px;
+      letter-spacing: .06em;
       text-transform: uppercase;
     }
-    .paper-title {
-      max-width: 990px;
-      margin: 0;
-      font-size: clamp(3rem, 7vw, 6.35rem);
-      line-height: .94;
-      letter-spacing: -.065em;
-      font-weight: 650;
-    }
-    .paper-subtitle {
+    h1 {
       max-width: 850px;
-      margin: 28px 0 0;
-      font-size: clamp(1.28rem, 2.4vw, 2rem);
-      line-height: 1.2;
-      letter-spacing: -.035em;
-      color: #393933;
+      margin: 0 auto;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.35rem, 5.2vw, 4.2rem);
+      font-weight: 600;
+      line-height: 1.06;
+      letter-spacing: -.025em;
     }
-    .paper-meta { margin: 28px 0 0; color: var(--paper-muted); font-size: .96rem; }
-    .paper-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 34px; }
-    .paper-button {
-      display: inline-flex;
-      align-items: center;
-      min-height: 43px;
-      padding: 0 16px;
-      border: 1px solid var(--paper-ink);
-      border-radius: 999px;
-      color: var(--paper-ink);
-      text-decoration: none;
-      font-size: .9rem;
-      font-weight: 650;
-    }
-    .paper-button-primary { background: var(--paper-ink); color: #f8f7f2; }
-    .paper-button-muted { border-color: var(--paper-line); color: var(--paper-muted); cursor: default; }
-
-    .thesis-band { padding: 62px 0; border-bottom: 1px solid var(--paper-line); }
-    .thesis-grid {
-      display: grid;
-      grid-template-columns: minmax(0, .8fr) minmax(0, 1.6fr);
-      gap: 52px;
-      align-items: start;
-    }
-    .section-tag {
-      margin: 4px 0 0;
-      color: var(--paper-muted);
-      font-size: .76rem;
-      font-weight: 700;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-    }
-    .thesis-line {
-      margin: 0;
-      max-width: 860px;
-      font-size: clamp(2rem, 4.4vw, 4rem);
-      line-height: 1.02;
-      letter-spacing: -.055em;
-    }
-    .thesis-copy {
-      max-width: 790px;
-      margin: 26px 0 0;
-      color: #4e4d47;
-      font-size: 1.08rem;
-      line-height: 1.7;
-    }
-
-    .paper-section { padding: 72px 0; border-bottom: 1px solid var(--paper-line); }
-    .paper-section-head {
-      display: grid;
-      grid-template-columns: minmax(0, .8fr) minmax(0, 1.6fr);
-      gap: 52px;
-      margin-bottom: 42px;
-    }
-    .paper-section-head h2 {
-      margin: 0;
-      font-size: clamp(2rem, 4vw, 3.5rem);
-      line-height: 1;
-      letter-spacing: -.05em;
-    }
-    .paper-section-head p:last-child {
-      margin: 18px 0 0;
+    .subtitle {
       max-width: 760px;
-      color: var(--paper-muted);
+      margin: 18px auto 0;
+      color: #333;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.18rem, 2.1vw, 1.55rem);
+      line-height: 1.35;
+    }
+    .authors {
+      margin: 28px 0 0;
+      font-size: 15px;
+    }
+    .affiliation {
+      margin: 2px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .paper-links {
+      margin: 24px 0 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px 18px;
+      font-size: 14px;
+    }
+    .paper-links a { font-weight: 600; }
+    .paper-links .forthcoming { color: var(--muted); }
+
+    section {
+      padding: 48px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    h2 {
+      margin: 0 0 22px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.8rem;
+      font-weight: 600;
+      line-height: 1.25;
+    }
+    h3 {
+      margin: 0;
       font-size: 1rem;
-      line-height: 1.65;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+    p { margin: 0 0 16px; }
+    p:last-child { margin-bottom: 0; }
+    .abstract p { text-align: justify; }
+
+    .claim {
+      margin: 30px 0 0;
+      padding: 20px 24px;
+      border-left: 3px solid var(--accent);
+      background: var(--soft);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.25rem;
+      line-height: 1.5;
     }
 
-    .loop {
+    .loop-figure {
+      margin: 30px 0 0;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+    .loop-grid {
+      min-width: 760px;
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 14px;
-      align-items: stretch;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid #aeb4bc;
+      border-bottom: 1px solid #aeb4bc;
     }
     .loop-step {
       position: relative;
-      min-height: 188px;
-      padding: 22px 22px 24px;
-      border: 1px solid var(--paper-line);
-      border-radius: 18px;
-      background: rgba(255,255,255,.28);
+      padding: 20px 22px 22px;
+      border-right: 1px solid #d6dae0;
     }
+    .loop-step:last-child { border-right: 0; }
     .loop-step:not(:last-child)::after {
-      content: '→';
+      content: "→";
       position: absolute;
-      z-index: 2;
-      right: -21px;
+      right: -10px;
       top: 50%;
-      width: 28px;
-      height: 28px;
-      display: grid;
-      place-items: center;
       transform: translateY(-50%);
-      border: 1px solid var(--paper-line);
-      border-radius: 50%;
-      background: #f6f5f0;
-      color: var(--paper-muted);
-      font-size: .9rem;
-    }
-    .loop-index { color: var(--paper-accent); font-size: .76rem; font-weight: 800; letter-spacing: .08em; }
-    .loop-step h3 { margin: 24px 0 10px; font-size: 1.14rem; letter-spacing: -.025em; }
-    .loop-step p { margin: 0; color: var(--paper-muted); line-height: 1.55; font-size: .94rem; }
-    .loop-return {
-      margin: 18px 0 0;
-      padding-top: 18px;
-      border-top: 1px dashed var(--paper-line);
-      color: var(--paper-muted);
+      z-index: 2;
+      width: 20px;
       text-align: center;
-      font-size: .9rem;
+      background: #fff;
+      color: var(--muted);
+    }
+    .loop-no {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .05em;
+    }
+    .loop-step p {
+      margin: 7px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    figcaption {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
     }
 
-    .question-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
-    .question-card {
-      padding: 26px;
-      border-top: 3px solid var(--paper-ink);
-      background: #eceae2;
-      min-height: 280px;
+    .lineage-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 18px;
+      font-size: 14px;
     }
-    .question-card span { color: var(--paper-accent); font-size: .78rem; font-weight: 800; letter-spacing: .08em; }
-    .question-card h3 { margin: 46px 0 14px; font-size: 1.5rem; line-height: 1.1; letter-spacing: -.035em; }
-    .question-card p { margin: 0; color: var(--paper-muted); line-height: 1.6; }
+    .lineage-table th,
+    .lineage-table td {
+      padding: 13px 12px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+    .lineage-table th {
+      padding-top: 0;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    .lineage-table td:first-child {
+      width: 26%;
+      font-weight: 650;
+    }
 
-    .now-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
-    .now-card { padding: 26px; border: 1px solid var(--paper-line); border-radius: 16px; }
-    .now-card h3 { margin: 0 0 11px; font-size: 1.08rem; }
-    .now-card p { margin: 0; color: var(--paper-muted); line-height: 1.6; }
-
-    .map-panel {
+    .questions {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      counter-reset: rq;
+    }
+    .questions li {
+      counter-increment: rq;
       display: grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 46px;
-      align-items: end;
-      padding: 40px;
-      border-radius: 22px;
-      background: var(--paper-accent);
-      color: #f5f4ef;
+      grid-template-columns: 42px 1fr;
+      gap: 12px;
+      padding: 18px 0;
+      border-top: 1px solid var(--line);
     }
-    .map-panel .section-tag { color: #b9cec4; }
-    .map-panel h2 { margin: 16px 0 0; font-size: clamp(2rem, 4vw, 3.7rem); line-height: 1; letter-spacing: -.05em; }
-    .map-panel p { margin: 20px 0 0; max-width: 690px; color: #d9e3dd; line-height: 1.65; }
-    .map-panel .paper-button { justify-self: end; border-color: #f5f4ef; color: #f5f4ef; }
+    .questions li:first-child { border-top: 0; padding-top: 0; }
+    .questions li::before {
+      content: counter(rq, decimal-leading-zero);
+      color: var(--accent);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .questions h3 { margin-bottom: 5px; }
+    .questions p { color: var(--muted); font-size: 14px; line-height: 1.55; }
 
-    .paper-footer { padding: 36px 0 50px; }
-    .paper-footer-inner { display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; color: var(--paper-muted); font-size: .88rem; }
-    .paper-footer a { color: inherit; }
+    .resources {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+    .resource-block {
+      padding-top: 12px;
+      border-top: 2px solid var(--ink);
+    }
+    .resource-block p { color: var(--muted); font-size: 14px; }
 
-    @media (max-width: 820px) {
-      .paper-wrap { width: min(100% - 28px, 1120px); }
-      .paper-nav-links { display: none; }
-      .paper-hero { padding-top: 62px; }
-      .thesis-grid, .paper-section-head, .map-panel { grid-template-columns: 1fr; gap: 22px; }
-      .loop { grid-template-columns: 1fr; }
-      .loop-step { min-height: 0; }
-      .loop-step:not(:last-child)::after { content: '↓'; right: 50%; top: auto; bottom: -22px; transform: translateX(50%); }
-      .question-grid, .now-grid { grid-template-columns: 1fr; }
-      .question-card { min-height: 0; }
-      .map-panel { padding: 28px; }
-      .map-panel .paper-button { justify-self: start; }
+    footer {
+      width: min(var(--max), calc(100% - 36px));
+      margin: 0 auto;
+      padding: 28px 0 44px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 700px) {
+      .topnav { display: none; }
+      .paper-head { padding-top: 50px; }
+      section { padding: 38px 0; }
+      .abstract p { text-align: left; }
+      .resources { grid-template-columns: 1fr; }
+      .lineage-table, .lineage-table thead, .lineage-table tbody,
+      .lineage-table tr, .lineage-table th, .lineage-table td { display: block; }
+      .lineage-table thead { display: none; }
+      .lineage-table tr { padding: 12px 0; border-bottom: 1px solid var(--line); }
+      .lineage-table td { padding: 3px 0; border: 0; }
+      .lineage-table td:first-child { width: auto; margin-bottom: 4px; }
     }
   </style>
   <script type="application/ld+json">
@@ -248,154 +286,168 @@
     "headline": "Organizing Intelligence Over Time: Human–AI Collaboration as Joint Cognitive Development",
     "author": {"@type": "Person", "name": "Zhiyu Yang", "url": "https://kevincl16.github.io/"},
     "dateCreated": "2026",
-    "description": "A survey and position connecting human cognition, Human–Automation and HCI, and modern AI agents through the longitudinal effects of how cognitive work is organized."
+    "description": "A survey and position on Human–AI collaboration as joint cognitive development."
   }
   </script>
 </head>
-<body class="paper-page">
-  <nav class="paper-nav" aria-label="Paper navigation">
-    <div class="paper-wrap paper-nav-inner">
-      <a class="paper-brand" href="/">Zhiyu Yang</a>
-      <div class="paper-nav-links">
-        <a href="#idea">Thesis</a>
-        <a href="#loop">The loop</a>
-        <a href="#questions">Questions</a>
-        <a href="#map">Literature map</a>
-      </div>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="author-home" href="/">Zhiyu Yang</a>
+      <nav class="topnav" aria-label="Page navigation">
+        <a href="#abstract">Abstract</a>
+        <a href="#overview">Overview</a>
+        <a href="#questions">Research Questions</a>
+        <a href="#resources">Resources</a>
+      </nav>
     </div>
-  </nav>
+  </header>
 
   <main>
-    <section class="paper-hero">
-      <div class="paper-wrap">
-        <p class="paper-kicker">Survey · Position · 2026</p>
-        <h1 class="paper-title">Organizing Intelligence Over Time</h1>
-        <p class="paper-subtitle">Human–AI Collaboration as Joint Cognitive Development</p>
-        <p class="paper-meta">Zhiyu Yang · University of Texas at Dallas</p>
-        <div class="paper-actions">
-          <a class="paper-button paper-button-primary" href="https://github.com/KevinCL16/awesome-longitudinal-ai-agents" target="_blank" rel="noopener noreferrer">Literature map ↗</a>
-          <a class="paper-button" href="https://github.com/KevinCL16/awesome-longitudinal-ai-agents" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-          <span class="paper-button paper-button-muted" aria-label="Preprint forthcoming">Preprint forthcoming</span>
-        </div>
+    <header class="paper-head">
+      <p class="paper-type">Survey Companion · 2026</p>
+      <h1>Organizing Intelligence Over Time</h1>
+      <p class="subtitle">Human–AI Collaboration as Joint Cognitive Development</p>
+      <p class="authors"><strong>Zhiyu Yang</strong></p>
+      <p class="affiliation">Department of Computer Science · The University of Texas at Dallas</p>
+      <div class="paper-links" aria-label="Paper links">
+        <span class="forthcoming">[Preprint forthcoming]</span>
+        <a href="https://github.com/KevinCL16/awesome-longitudinal-ai-agents" target="_blank" rel="noopener noreferrer">[Literature Map]</a>
+        <a href="https://github.com/KevinCL16/awesome-longitudinal-ai-agents" target="_blank" rel="noopener noreferrer">[GitHub]</a>
       </div>
+    </header>
+
+    <section id="abstract" class="abstract">
+      <h2>Abstract</h2>
+      <p>As humans and AI agents work together across long-horizon tasks and accumulate interaction history, how cognitive work is organized on one task can shape later performance and later capability. A system may reason further, retrieve prior experience, verify, invoke a tool or another model, ask for human judgment, or stop. These choices also determine who gets what experience: whether the human practices a skill, whether the AI receives demonstrations or corrections, which failures are exposed for supervision, and which trajectories become reusable.</p>
+      <p>This survey connects human cognition, Human–Automation and HCI, and modern AI agents. Read together, these literatures expose a longitudinal causal sequence: organizing cognitive work determines the distribution of practice, supervision, feedback, and trajectories; that experience changes human skill and beliefs, machine memory and policy, and the coordination between them; and the updated joint system then organizes future work differently.</p>
+      <div class="claim">How humans and AI work together today changes what each can do tomorrow.</div>
     </section>
 
-    <section class="thesis-band" id="idea">
-      <div class="paper-wrap thesis-grid">
-        <p class="section-tag">Core position</p>
-        <div>
-          <p class="thesis-line">How humans and AI work together today changes what each can do tomorrow.</p>
-          <p class="thesis-copy">Human–AI collaboration is usually evaluated one task at a time. But repeated work changes the participants themselves. The way cognitive work is divided determines who practices, who receives feedback, which trajectories are retained, and which forms of reasoning become reusable. Those experiences change later human skill, machine behavior, and coordination.</p>
-        </div>
-      </div>
-    </section>
+    <section id="overview">
+      <h2>Joint Cognitive Development</h2>
+      <p>The survey treats repeated Human–AI collaboration as a changing system rather than repeated task completion by a fixed team. The organization of current cognitive work shapes the experience available to both participants, and that experience changes the capabilities that return on later tasks.</p>
 
-    <section class="paper-section" id="loop">
-      <div class="paper-wrap">
-        <div class="paper-section-head">
-          <p class="section-tag">Joint cognitive development</p>
-          <div>
-            <h2>A longitudinal loop, not a fixed team.</h2>
-            <p>The survey connects within-task cognitive organization to the experience each participant accumulates, and then to the capabilities that return on the next task.</p>
-          </div>
-        </div>
-
-        <div class="loop" aria-label="Joint cognitive development loop">
-          <article class="loop-step">
-            <span class="loop-index">01</span>
+      <figure class="loop-figure">
+        <div class="loop-grid" aria-label="Joint cognitive development loop">
+          <div class="loop-step">
+            <span class="loop-no">01</span>
             <h3>Organize cognitive work</h3>
             <p>Reason, retrieve, verify, delegate, act, ask for help, or stop.</p>
-          </article>
-          <article class="loop-step">
-            <span class="loop-index">02</span>
+          </div>
+          <div class="loop-step">
+            <span class="loop-no">02</span>
             <h3>Generate selective experience</h3>
-            <p>Practice, supervision, corrections, outcomes, and trajectories are distributed unevenly.</p>
-          </article>
-          <article class="loop-step">
-            <span class="loop-index">03</span>
+            <p>Practice, supervision, feedback, outcomes, and trajectories are distributed.</p>
+          </div>
+          <div class="loop-step">
+            <span class="loop-no">03</span>
             <h3>Change the participants</h3>
-            <p>Human skill and beliefs, machine memory and policy, and joint coordination evolve.</p>
-          </article>
-          <article class="loop-step">
-            <span class="loop-index">04</span>
+            <p>Human skill and beliefs, machine memory and policy, and coordination change.</p>
+          </div>
+          <div class="loop-step">
+            <span class="loop-no">04</span>
             <h3>Reorganize future work</h3>
-            <p>The updated Human–AI system approaches the next task with different capabilities.</p>
-          </article>
-        </div>
-        <p class="loop-return">The output of one task becomes part of the cognitive state that organizes the next.</p>
-      </div>
-    </section>
-
-    <section class="paper-section" id="questions">
-      <div class="paper-wrap">
-        <div class="paper-section-head">
-          <p class="section-tag">Survey structure</p>
-          <div>
-            <h2>Three questions organize the literature.</h2>
-            <p>Human cognition, Human–Automation and HCI, and modern AI agents each illuminate a different part of the same longitudinal problem.</p>
+            <p>The updated Human–AI system approaches later tasks with different capabilities.</p>
           </div>
         </div>
-
-        <div class="question-grid">
-          <article class="question-card">
-            <span>QUESTION 1</span>
-            <h3>How is cognitive work organized within a task?</h3>
-            <p>Which cognitive operations are invoked, who performs them, where authority lies, and how much effort should be spent?</p>
-          </article>
-          <article class="question-card">
-            <span>QUESTION 2</span>
-            <h3>How does experience change the cognition available next time?</h3>
-            <p>Experience can become chunks, procedures, memories, skills, routing preferences, and stopping policies that reshape later cognition.</p>
-          </article>
-          <article class="question-card">
-            <span>QUESTION 3</span>
-            <h3>How does organizing work change the learners themselves?</h3>
-            <p>Automation and delegation determine who gets to practice, who receives feedback, and what each side can learn from.</p>
-          </article>
-        </div>
-      </div>
+        <figcaption>Figure 1. The joint cognitive development loop. Current work organization changes the experience available for learning, which changes the system that organizes later work.</figcaption>
+      </figure>
     </section>
 
-    <section class="paper-section">
-      <div class="paper-wrap">
-        <div class="paper-section-head">
-          <p class="section-tag">Why now</p>
-          <div>
-            <h2>Agent runtimes make cognitive organization executable.</h2>
-            <p>Modern systems expose many choices that earlier literatures studied separately, while persistent histories make their long-run consequences increasingly observable.</p>
-          </div>
-        </div>
-
-        <div class="now-grid">
-          <article class="now-card"><h3>Persistent experience</h3><p>Memories, trajectories, workflows, skills, and other artifacts can survive beyond one interaction.</p></article>
-          <article class="now-card"><h3>Explicit cognitive control</h3><p>Reasoning, retrieval, verification, routing, escalation, and stopping can be configured as runtime decisions.</p></article>
-          <article class="now-card"><h3>Adaptive machine behavior</h3><p>Experience can change not only task content but also how future computation is selected and organized.</p></article>
-          <article class="now-card"><h3>Changing human participation</h3><p>As AI autonomy grows, people receive a different distribution of practice, oversight, and intervention opportunities.</p></article>
-        </div>
-      </div>
+    <section id="literatures">
+      <h2>Three Literatures, One Longitudinal Problem</h2>
+      <table class="lineage-table">
+        <thead>
+          <tr>
+            <th>Tradition</th>
+            <th>What it contributes</th>
+            <th>Longitudinal implication</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Human cognition</td>
+            <td>Bounded rationality, metareasoning, metacognitive control, expertise, and skill acquisition.</td>
+            <td>Experience changes representations, procedures, retrieval, and the cognitive operations needed later.</td>
+          </tr>
+          <tr>
+            <td>Human–Automation &amp; HCI</td>
+            <td>Function allocation, supervisory control, mixed initiative, trust, shared autonomy, and human readiness.</td>
+            <td>How work is divided changes what the human continues to practice and how later intervention is performed.</td>
+          </tr>
+          <tr>
+            <td>Modern AI agents</td>
+            <td>Memory, workflows, skills, routing, verification, stopping, continual learning, and self-evolution.</td>
+            <td>Interaction trajectories can be retained and transformed into artifacts and policies that alter later behavior.</td>
+          </tr>
+        </tbody>
+      </table>
     </section>
 
-    <section class="paper-section" id="map">
-      <div class="paper-wrap">
-        <div class="map-panel">
+    <section id="questions">
+      <h2>Research Questions</h2>
+      <ol class="questions">
+        <li>
           <div>
-            <p class="section-tag">Open literature map</p>
-            <h2>Awesome Longitudinal AI Agents</h2>
-            <p>A living companion to the survey covering experience and memory, reusable skills, continual and self-evolving agents, adaptive cognitive control, Human–AI adaptation, evaluation, frontier systems, and the foundational literature behind them.</p>
+            <h3>How should interdependent cognitive operations be learned together?</h3>
+            <p>Retrieval, reasoning, verification, routing, human involvement, and stopping interact; learning them independently can waste effort or suppress useful signals.</p>
           </div>
-          <a class="paper-button" href="https://github.com/KevinCL16/awesome-longitudinal-ai-agents" target="_blank" rel="noopener noreferrer">Browse the map ↗</a>
+        </li>
+        <li>
+          <div>
+            <h3>Reopening: when should experience lose authority?</h3>
+            <p>Reusable workflows, skills, memories, and routing preferences save cognition only while the regularities that justified them continue to hold.</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h3>How should work be assigned when it also creates learning opportunities?</h3>
+            <p>Delegation determines both current performance and which participant receives practice, demonstrations, corrections, and future learning value.</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h3>How should systems learn when their own decisions determine the feedback they receive?</h3>
+            <p>Autonomy, review, routing, and takeover policies shape which errors are observed and which trajectories become supervised data.</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h3>How can a system distinguish user preference from adaptation to the system?</h3>
+            <p>Observed user behavior may reflect stable preference, learned trust, checking cost, or behavior induced by earlier assistance.</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h3>How can we tell whether a Human–AI system has actually improved over time?</h3>
+            <p>Longitudinal evaluation must separate history-driven capability change from extra compute, easier tasks, model upgrades, or greater human effort.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section id="resources">
+      <h2>Resources</h2>
+      <div class="resources">
+        <div class="resource-block">
+          <h3>Literature map</h3>
+          <p>The public companion bibliography tracks work on persistent experience, reusable skills, continual and self-evolving agents, adaptive cognitive control, repeated Human–AI adaptation, evaluation, and foundations.</p>
+          <p><a href="https://github.com/KevinCL16/awesome-longitudinal-ai-agents" target="_blank" rel="noopener noreferrer">Awesome Longitudinal AI Agents ↗</a></p>
+        </div>
+        <div class="resource-block">
+          <h3>Preprint</h3>
+          <p>The preprint is being posted. This page will link the public PDF and DOI once the first version is online.</p>
+          <p><span style="color: var(--muted);">Preprint forthcoming</span></p>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="paper-footer">
-    <div class="paper-wrap paper-footer-inner">
-      <span>© <span id="current-year">2026</span> Zhiyu Yang</span>
-      <span><a href="/">Home</a> · <a href="https://github.com/KevinCL16/awesome-longitudinal-ai-agents">Literature map</a></span>
-    </div>
+  <footer>
+    <a href="/">Zhiyu Yang</a> · Survey companion page · 2026
   </footer>
 
-  <script src="script.js?v=analytics-v3"></script>
+  <script src="script.js" defer></script>
 </body>
 </html>
