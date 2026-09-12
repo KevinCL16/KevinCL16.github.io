@@ -36,6 +36,17 @@
       '<span class="writing-arrow" aria-hidden="true">↗</span>'
     ].join('');
 
+    const surveyPage = document.createElement('a');
+    surveyPage.className = 'writing-item';
+    surveyPage.dataset.writing = 'organizing-intelligence-over-time';
+    surveyPage.href = '/organizing-intelligence-over-time.html';
+    surveyPage.innerHTML = [
+      '<div class="writing-meta"><span>Sep 2026</span><span>Survey · Position</span></div>',
+      '<h3>Organizing Intelligence Over Time</h3>',
+      '<p>Human–AI collaboration as joint cognitive development: how present work organization shapes future human, machine, and joint capability.</p>',
+      '<span class="writing-arrow" aria-hidden="true">↗</span>'
+    ].join('');
+
     const harnessPost = document.createElement('a');
     harnessPost.className = 'writing-item';
     harnessPost.dataset.writing = 'harness-learning';
@@ -51,6 +62,7 @@
 
     writingGrid.prepend(awesomeList);
     writingGrid.prepend(harnessPost);
+    writingGrid.prepend(surveyPage);
 
     const desktopWriting = window.matchMedia('(min-width: 761px)');
     const syncWritingColumns = function () {
