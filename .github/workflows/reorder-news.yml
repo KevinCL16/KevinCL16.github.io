@@ -1,0 +1,45 @@
+name: Reorder news items
+
+on: [push]
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Put literature map next to survey
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('index.html')
+          s = p.read_text(encoding='utf-8')
+          harness = '''          <a class="news-item" href="/harness-learning.html">
+            <time class="news-date">Sep 2026</time>
+            <span class="news-type">Essay</span>
+            <span class="news-text"><strong>The Harness Learning Stack</strong><span class="news-summary"> — A post-training-like stack around environments, trajectories, graders, credit assignment, and harness updates.</span></span>
+            <span class="news-arrow" aria-hidden="true">↗</span>
+          </a>
+'''
+          awesome = '''          <a class="news-item" href="https://github.com/KevinCL16/awesome-longitudinal-ai-agents" target="_blank" rel="noopener noreferrer">
+            <time class="news-date">Sep 2026</time>
+            <span class="news-type">Literature map</span>
+            <span class="news-text"><strong>Awesome Longitudinal AI Agents</strong><span class="news-summary"> — A curated map of research on agents and Human–AI systems that change through accumulated experience.</span></span>
+            <span class="news-arrow" aria-hidden="true">↗</span>
+          </a>
+'''
+          pair = harness + awesome
+          if pair not in s:
+              raise SystemExit('expected adjacent news items not found')
+          s = s.replace(pair, awesome + harness, 1)
+          p.write_text(s, encoding='utf-8')
+          PY
+      - name: Commit
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add index.html
+          git commit -m "chore: group survey and literature map in News"
+          git push
