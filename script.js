@@ -23,6 +23,19 @@
   if (writingGrid && !writingGrid.querySelector('[data-writing="harness-learning"]')) {
     writingGrid.classList.remove('writing-grid-single');
 
+    const awesomeList = document.createElement('a');
+    awesomeList.className = 'writing-item';
+    awesomeList.dataset.writing = 'awesome-longitudinal-ai-agents';
+    awesomeList.href = 'https://github.com/KevinCL16/awesome-longitudinal-ai-agents';
+    awesomeList.target = '_blank';
+    awesomeList.rel = 'noopener noreferrer';
+    awesomeList.innerHTML = [
+      '<div class="writing-meta"><span>Sep 2026</span><span>Literature map</span></div>',
+      '<h3>Awesome Longitudinal AI Agents</h3>',
+      '<p>A curated map of research on agents and Human–AI systems where accumulated experience changes later behavior, coordination, or capability.</p>',
+      '<span class="writing-arrow" aria-hidden="true">↗</span>'
+    ].join('');
+
     const harnessPost = document.createElement('a');
     harnessPost.className = 'writing-item';
     harnessPost.dataset.writing = 'harness-learning';
@@ -36,6 +49,7 @@
       '<span class="writing-arrow" aria-hidden="true">↗</span>'
     ].join('');
 
+    writingGrid.prepend(awesomeList);
     writingGrid.prepend(harnessPost);
 
     const desktopWriting = window.matchMedia('(min-width: 761px)');
@@ -49,7 +63,7 @@
     if (desktopWriting.addEventListener) {
       desktopWriting.addEventListener('change', syncWritingColumns);
     } else if (desktopWriting.addListener) {
-      desktopWriting.addListener(syncWritingColumns);
+      desktopWriting.addListener('change', syncWritingColumns);
     }
   }
 
