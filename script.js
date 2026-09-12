@@ -63,7 +63,7 @@
     if (desktopWriting.addEventListener) {
       desktopWriting.addEventListener('change', syncWritingColumns);
     } else if (desktopWriting.addListener) {
-      desktopWriting.addListener('change', syncWritingColumns);
+      desktopWriting.addListener(syncWritingColumns);
     }
   }
 
