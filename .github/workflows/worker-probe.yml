@@ -9,14 +9,21 @@ jobs:
       - name: Probe live Cloudflare Worker
         shell: bash
         run: |
-          set -x
           BASE='https://kevincl16-page-counter.teslacpp.workers.dev'
-          echo '=== /health ==='
-          curl -i -sS --max-time 20 "$BASE/health" || true
-          echo
-          echo '=== /summary (unauthenticated; expected 401) ==='
-          curl -i -sS --max-time 20 "$BASE/summary" || true
-          echo
-          echo '=== / ==='
-          curl -i -sS --max-time 20 "$BASE/" || true
-          echo
+          {
+            echo '=== /health ==='
+            curl -i -sS --max-time 20 "$BASE/health" || true
+            echo
+            echo '=== /summary (unauthenticated; expected 401) ==='
+            curl -i -sS --max-time 20 "$BASE/summary" || true
+            echo
+            echo '=== / ==='
+            curl -i -sS --max-time 20 "$BASE/" || true
+            echo
+          } > worker-probe.txt 2>&1
+          cat worker-probe.txt
+      - name: Upload probe output
+        uses: actions/upload-artifact@v4
+        with:
+          name: worker-probe
+          path: worker-probe.txt
