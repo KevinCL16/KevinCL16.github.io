@@ -17,177 +17,27 @@ jobs:
         run: |
           python - <<'PY'
           from pathlib import Path
-
-          # index.html
+          import base64
+          def dec(s): return base64.b64decode(s).decode('utf-8')
+          old_section = dec('ICAgIDxzZWN0aW9uIGNsYXNzPSJzZWN0aW9uIHNlY3Rpb24tcnVsZSIgaWQ9IndyaXRpbmciPgogICAgICA8ZGl2IGNsYXNzPSJ3cmFwIj4KICAgICAgICA8ZGl2IGNsYXNzPSJzZWN0aW9uLWhlYWRpbmcgc2VjdGlvbi1oZWFkaW5nLWlubGluZSI+CiAgICAgICAgICA8ZGl2PgogICAgICAgICAgICA8cCBjbGFzcz0ic2VjdGlvbi1sYWJlbCI+UmVjZW50IHdvcms8L3A+CiAgICAgICAgICAgIDxoMj5SZXNlYXJjaCwgbm90ZXMsIGFuZCByZXNvdXJjZXMuPC9oMj4KICAgICAgICAgIDwvZGl2PgogICAgICAgICAgPGEgY2xhc3M9InRleHQtbGluayIgaHJlZj0iaHR0cHM6Ly9rZWx2aW55YW5nLm5vdGlvbi5zaXRlL0FJLTNiMDljZWRlMzg3MTgwZmJiNjY5ZjMwNjVjNDgzNzQ2IiB0YXJnZXQ9Il9ibGFuayIgcmVsPSJub29wZW5lciBub3JlZmVycmVyIj5Ob3RlcyBvbiBOb3Rpb24gPHNwYW4gYXJpYS1oaWRkZW49InRydWUiPuKGlzwvc3Bhbj48L2E+CiAgICAgICAgPC9kaXY+CgogICAgICAgIDxkaXYgY2xhc3M9IndyaXRpbmctZ3JpZCB3cml0aW5nLWdyaWQtc2luZ2xlIj4KICAgICAgICAgIDxhIGNsYXNzPSJ3cml0aW5nLWl0ZW0iIGhyZWY9Imh0dHBzOi8va2VsdmlueWFuZy5ub3Rpb24uc2l0ZS9BSS0zYjA5Y2VkZTM4NzE4MGZiYjY2OWYzMDY1YzQ4Mzc0NiIgdGFyZ2V0PSJfYmxhbmsiIHJlbD0ibm9vcGVuZXIgbm9yZWZlcnJlciI+CiAgICAgICAgICAgIDxkaXYgY2xhc3M9IndyaXRpbmctbWV0YSI+PHNwYW4+QXVnIDIwMjY8L3NwYW4+PHNwYW4+RXNzYXk8L3NwYW4+PC9kaXY+CiAgICAgICAgICAgIDxoMz5BSSDnmoTkuIvkuIDlnLrnq57kuonvvIzkuI3mmK/mqKHlnovog73lipvvvIzogIzmmK/nu4/pqozlvqrnjq88L2gzPgogICAgICAgICAgICA8cD7lhbPkuo7nnJ/lrp7kurrmnLrkuqTkupLnu4/pqozlpoLkvZXooqvorrDlvZXjgIHmj5DngrzvvIzlubbph43mlrDov5vlhaXkuKrkurrmiJbnu4Tnu4fnmoTlrabkuaDlvqrnjq/jgII8L3A+CiAgICAgICAgICAgIDxzcGFuIGNsYXNzPSJ3cml0aW5nLWFycm93IiBhcmlhLWhpZGRlbj0idHJ1ZSI+4oaXPC9zcGFuPgogICAgICAgICAgPC9hPgogICAgICAgIDwvZGl2PgogICAgICA8L2Rpdj4KICAgIDwvc2VjdGlvbj4=')
+          new_section = dec('ICAgIDxzZWN0aW9uIGNsYXNzPSJzZWN0aW9uIHNlY3Rpb24tcnVsZSIgaWQ9Im5ld3MiPgogICAgICA8ZGl2IGNsYXNzPSJ3cmFwIj4KICAgICAgICA8ZGl2IGNsYXNzPSJzZWN0aW9uLWhlYWRpbmcgc2VjdGlvbi1oZWFkaW5nLWlubGluZSBuZXdzLWhlYWRpbmciPgogICAgICAgICAgPGRpdj4KICAgICAgICAgICAgPHAgY2xhc3M9InNlY3Rpb24tbGFiZWwiPk5ld3M8L3A+CiAgICAgICAgICAgIDxoMj5SZWNlbnQgdXBkYXRlcy48L2gyPgogICAgICAgICAgPC9kaXY+CiAgICAgICAgICA8YSBjbGFzcz0idGV4dC1saW5rIiBocmVmPSJodHRwczovL2tlbHZpbnlhbmcubm90aW9uLnNpdGUvQUktM2IwOWNlZGUzODcxODBmYmI2NjlmMzA2NWM0ODM3NDYiIHRhcmdldD0iX2JsYW5rIiByZWw9Im5vb3BlbmVyIG5vcmVmZXJyZXIiPk5vdGVzIG9uIE5vdGlvbiA8c3BhbiBhcmlhLWhpZGRlbj0idHJ1ZSI+4oaXPC9zcGFuPjwvYT4KICAgICAgICA8L2Rpdj4KCiAgICAgICAgPGRpdiBjbGFzcz0ibmV3cy1saXN0Ij4KICAgICAgICAgIDxhIGNsYXNzPSJuZXdzLWl0ZW0iIGhyZWY9Imh0dHBzOi8va2VsdmlueWFuZy5ub3Rpb24uc2l0ZS9BSS0zYjA5Y2VkZTM4NzE4MGZiYjY2OWYzMDY1YzQ4Mzc0NiIgdGFyZ2V0PSJfYmxhbmsiIHJlbD0ibm9vcGVuZXIgbm9yZWZlcnJlciI+CiAgICAgICAgICAgIDx0aW1lIGNsYXNzPSJuZXdzLWRhdGUiPkF1ZyAyMDI2PC90aW1lPgogICAgICAgICAgICA8c3BhbiBjbGFzcz0ibmV3cy10eXBlIj5Fc3NheTwvc3Bhbj4KICAgICAgICAgICAgPHNwYW4gY2xhc3M9Im5ld3MtdGV4dCI+PHN0cm9uZz5BSSDnmoTkuIvkuIDlnLrnq57kuonvvIzkuI3mmK/mqKHlnovog73lipvvvIzogIzmmK/nu4/pqozlvqrnjq88L3N0cm9uZz48c3BhbiBjbGFzcz0ibmV3cy1zdW1tYXJ5Ij4g4oCUIOWFs+S6juecn+WunuS6uuacuuS6pOS6kue7j+mqjOWmguS9leiiq+iusOW9leOAgeaPkOeCvO+8jOW5tumHjeaWsOi/m+WFpeS4quS6uuaIlue7hOe7h+eahOWtpuS5oOW+queOr+OAgjwvc3Bhbj48L3NwYW4+CiAgICAgICAgICAgIDxzcGFuIGNsYXNzPSJuZXdzLWFycm93IiBhcmlhLWhpZGRlbj0idHJ1ZSI+4oaXPC9zcGFuPgogICAgICAgICAgPC9hPgogICAgICAgIDwvZGl2PgogICAgICA8L2Rpdj4KICAgIDwvc2VjdGlvbj4=')
+          new_block = dec('ICBjb25zdCBuZXdzTGlzdCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoJyNuZXdzIC5uZXdzLWxpc3QnKTsKICBpZiAobmV3c0xpc3QgJiYgIW5ld3NMaXN0LnF1ZXJ5U2VsZWN0b3IoJ1tkYXRhLW5ld3M9Im9yZ2FuaXppbmctaW50ZWxsaWdlbmNlLW92ZXItdGltZSJdJykpIHsKICAgIGNvbnN0IGVudHJpZXMgPSBbCiAgICAgIHsKICAgICAgICBpZDogJ29yZ2FuaXppbmctaW50ZWxsaWdlbmNlLW92ZXItdGltZScsCiAgICAgICAgZGF0ZTogJ1NlcCAyMDI2JywKICAgICAgICB0eXBlOiAnU3VydmV5IMK3IFBvc2l0aW9uJywKICAgICAgICB0aXRsZTogJ09yZ2FuaXppbmcgSW50ZWxsaWdlbmNlIE92ZXIgVGltZScsCiAgICAgICAgc3VtbWFyeTogJ0h1bWFu4oCTQUkgY29sbGFib3JhdGlvbiBhcyBqb2ludCBjb2duaXRpdmUgZGV2ZWxvcG1lbnQuJywKICAgICAgICBocmVmOiAnL29yZ2FuaXppbmctaW50ZWxsaWdlbmNlLW92ZXItdGltZS5odG1sJywKICAgICAgICBleHRlcm5hbDogZmFsc2UKICAgICAgfSwKICAgICAgewogICAgICAgIGlkOiAnaGFybmVzcy1sZWFybmluZycsCiAgICAgICAgZGF0ZTogJ1NlcCAyMDI2JywKICAgICAgICB0eXBlOiAnRXNzYXknLAogICAgICAgIHRpdGxlOiAnVGhlIEhhcm5lc3MgTGVhcm5pbmcgU3RhY2snLAogICAgICAgIHN1bW1hcnk6ICdBIHBvc3QtdHJhaW5pbmctbGlrZSBzdGFjayBhcm91bmQgZW52aXJvbm1lbnRzLCB0cmFqZWN0b3JpZXMsIGdyYWRlcnMsIGNyZWRpdCBhc3NpZ25tZW50LCBhbmQgaGFybmVzcyB1cGRhdGVzLicsCiAgICAgICAgaHJlZjogJy9oYXJuZXNzLWxlYXJuaW5nLmh0bWwnLAogICAgICAgIGV4dGVybmFsOiBmYWxzZQogICAgICB9LAogICAgICB7CiAgICAgICAgaWQ6ICdhd2Vzb21lLWxvbmdpdHVkaW5hbC1haS1hZ2VudHMnLAogICAgICAgIGRhdGU6ICdTZXAgMjAyNicsCiAgICAgICAgdHlwZTogJ0xpdGVyYXR1cmUgbWFwJywKICAgICAgICB0aXRsZTogJ0F3ZXNvbWUgTG9uZ2l0dWRpbmFsIEFJIEFnZW50cycsCiAgICAgICAgc3VtbWFyeTogJ0EgY3VyYXRlZCBtYXAgb2YgcmVzZWFyY2ggb24gYWdlbnRzIGFuZCBIdW1hbuKAk0FJIHN5c3RlbXMgdGhhdCBjaGFuZ2UgdGhyb3VnaCBhY2N1bXVsYXRlZCBleHBlcmllbmNlLicsCiAgICAgICAgaHJlZjogJ2h0dHBzOi8vZ2l0aHViLmNvbS9LZXZpbkNMMTYvYXdlc29tZS1sb25naXR1ZGluYWwtYWktYWdlbnRzJywKICAgICAgICBleHRlcm5hbDogdHJ1ZQogICAgICB9CiAgICBdOwoKICAgIGVudHJpZXMuc2xpY2UoKS5yZXZlcnNlKCkuZm9yRWFjaChmdW5jdGlvbiAoZW50cnkpIHsKICAgICAgY29uc3QgaXRlbSA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoJ2EnKTsKICAgICAgaXRlbS5jbGFzc05hbWUgPSAnbmV3cy1pdGVtJzsKICAgICAgaXRlbS5kYXRhc2V0Lm5ld3MgPSBlbnRyeS5pZDsKICAgICAgaXRlbS5ocmVmID0gZW50cnkuaHJlZjsKICAgICAgaWYgKGVudHJ5LmV4dGVybmFsKSB7CiAgICAgICAgaXRlbS50YXJnZXQgPSAnX2JsYW5rJzsKICAgICAgICBpdGVtLnJlbCA9ICdub29wZW5lciBub3JlZmVycmVyJzsKICAgICAgfQogICAgICBpdGVtLmlubmVySFRNTCA9IFsKICAgICAgICAnPHRpbWUgY2xhc3M9Im5ld3MtZGF0ZSI+JyArIGVudHJ5LmRhdGUgKyAnPC90aW1lPicsCiAgICAgICAgJzxzcGFuIGNsYXNzPSJuZXdzLXR5cGUiPicgKyBlbnRyeS50eXBlICsgJzwvc3Bhbj4nLAogICAgICAgICc8c3BhbiBjbGFzcz0ibmV3cy10ZXh0Ij48c3Ryb25nPicgKyBlbnRyeS50aXRsZSArICc8L3N0cm9uZz48c3BhbiBjbGFzcz0ibmV3cy1zdW1tYXJ5Ij4g4oCUICcgKyBlbnRyeS5zdW1tYXJ5ICsgJzwvc3Bhbj48L3NwYW4+JywKICAgICAgICAnPHNwYW4gY2xhc3M9Im5ld3MtYXJyb3ciIGFyaWEtaGlkZGVuPSJ0cnVlIj7ihpc8L3NwYW4+JwogICAgICBdLmpvaW4oJycpOwogICAgICBuZXdzTGlzdC5wcmVwZW5kKGl0ZW0pOwogICAgfSk7CiAgfQ==')
+          css_add = dec('Ci8qIENvbXBhY3QgcHJvZmVzc29yLXN0eWxlIG5ld3MgZmVlZCAqLwoubmV3cy1oZWFkaW5nIHsgbWFyZ2luLWJvdHRvbTogMjhweDsgfQoubmV3cy1saXN0IHsgYm9yZGVyLXRvcDogMXB4IHNvbGlkIHZhcigtLWxpbmUpOyB9Ci5uZXdzLWl0ZW0gewogIGRpc3BsYXk6IGdyaWQ7CiAgZ3JpZC10ZW1wbGF0ZS1jb2x1bW5zOiA4OHB4IDExOHB4IG1pbm1heCgwLCAxZnIpIDE4cHg7CiAgZ2FwOiAxOHB4OwogIGFsaWduLWl0ZW1zOiBiYXNlbGluZTsKICBwYWRkaW5nOiAxM3B4IDAgMTRweDsKICBib3JkZXItYm90dG9tOiAxcHggc29saWQgdmFyKC0tbGluZSk7CiAgY29sb3I6IHZhcigtLWluayk7CiAgdHJhbnNpdGlvbjogY29sb3IgLjJzIGVhc2UsIGJhY2tncm91bmQgLjJzIGVhc2U7Cn0KLm5ld3MtaXRlbTpob3ZlciB7IGNvbG9yOiB2YXIoLS1hY2NlbnQtZGFyayk7IH0KLm5ld3MtZGF0ZSB7CiAgY29sb3I6IHZhcigtLWZhaW50KTsKICBmb250LXNpemU6IDExcHg7CiAgZm9udC12YXJpYW50LW51bWVyaWM6IHRhYnVsYXItbnVtczsKICB0ZXh0LXRyYW5zZm9ybTogdXBwZXJjYXNlOwogIGxldHRlci1zcGFjaW5nOiAuMDVlbTsKfQoubmV3cy10eXBlIHsKICBjb2xvcjogdmFyKC0tYWNjZW50KTsKICBmb250LXNpemU6IDEwcHg7CiAgZm9udC13ZWlnaHQ6IDcwMDsKICBsZXR0ZXItc3BhY2luZzogLjA3ZW07CiAgdGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTsKfQoubmV3cy10ZXh0IHsKICBtaW4td2lkdGg6IDA7CiAgZm9udC1zaXplOiAxNHB4OwogIGxpbmUtaGVpZ2h0OiAxLjQ1Owp9Ci5uZXdzLXRleHQgc3Ryb25nIHsgZm9udC13ZWlnaHQ6IDY1MDsgbGV0dGVyLXNwYWNpbmc6IC0uMDEyZW07IH0KLm5ld3Mtc3VtbWFyeSB7IGNvbG9yOiB2YXIoLS1tdXRlZCk7IGZvbnQtd2VpZ2h0OiA0MDA7IH0KLm5ld3MtYXJyb3cgeyBjb2xvcjogdmFyKC0tYWNjZW50KTsgZm9udC1zaXplOiAxNHB4OyB0ZXh0LWFsaWduOiByaWdodDsgfQoKQG1lZGlhIChtYXgtd2lkdGg6IDc2MHB4KSB7CiAgLm5ld3MtaGVhZGluZyB7IG1hcmdpbi1ib3R0b206IDIycHg7IH0KICAubmV3cy1pdGVtIHsKICAgIGdyaWQtdGVtcGxhdGUtY29sdW1uczogNzhweCBtaW5tYXgoMCwgMWZyKSAxNnB4OwogICAgZ2FwOiAxMHB4IDEycHg7CiAgICBwYWRkaW5nOiAxNHB4IDAgMTVweDsKICB9CiAgLm5ld3MtdHlwZSB7IGdyaWQtY29sdW1uOiAyOyBncmlkLXJvdzogMTsgfQogIC5uZXdzLXRleHQgeyBncmlkLWNvbHVtbjogMSAvIDM7IGdyaWQtcm93OiAyOyBmb250LXNpemU6IDE0cHg7IH0KICAubmV3cy1hcnJvdyB7IGdyaWQtY29sdW1uOiAzOyBncmlkLXJvdzogMSAvIDM7IGFsaWduLXNlbGY6IGNlbnRlcjsgfQogIC5uZXdzLXN1bW1hcnkgeyBkaXNwbGF5OiBpbmxpbmU7IH0KfQo=')
           p = Path('index.html')
           text = p.read_text(encoding='utf-8')
           text = text.replace('<a href="#writing">Recent Work</a>', '<a href="#news">News</a>')
           text = text.replace('<a class="hero-link" href="#writing">Recent Work <span aria-hidden="true">↗</span></a>', '<a class="hero-link" href="#news">News <span aria-hidden="true">↗</span></a>')
-
-          old_section = '''    <section class="section section-rule" id="writing">
-      <div class="wrap">
-        <div class="section-heading section-heading-inline">
-          <div>
-            <p class="section-label">Recent work</p>
-            <h2>Research, notes, and resources.</h2>
-          </div>
-          <a class="text-link" href="https://kelvinyang.notion.site/AI-3b09cede387180fbb669f3065c483746" target="_blank" rel="noopener noreferrer">Notes on Notion <span aria-hidden="true">↗</span></a>
-        </div>
-
-        <div class="writing-grid writing-grid-single">
-          <a class="writing-item" href="https://kelvinyang.notion.site/AI-3b09cede387180fbb669f3065c483746" target="_blank" rel="noopener noreferrer">
-            <div class="writing-meta"><span>Aug 2026</span><span>Essay</span></div>
-            <h3>AI 的下一场竞争，不是模型能力，而是经验循环</h3>
-            <p>关于真实人机交互经验如何被记录、提炼，并重新进入个人或组织的学习循环。</p>
-            <span class="writing-arrow" aria-hidden="true">↗</span>
-          </a>
-        </div>
-      </div>
-    </section>'''
-
-          new_section = '''    <section class="section section-rule" id="news">
-      <div class="wrap">
-        <div class="section-heading section-heading-inline news-heading">
-          <div>
-            <p class="section-label">News</p>
-            <h2>Recent updates.</h2>
-          </div>
-          <a class="text-link" href="https://kelvinyang.notion.site/AI-3b09cede387180fbb669f3065c483746" target="_blank" rel="noopener noreferrer">Notes on Notion <span aria-hidden="true">↗</span></a>
-        </div>
-
-        <div class="news-list">
-          <a class="news-item" href="https://kelvinyang.notion.site/AI-3b09cede387180fbb669f3065c483746" target="_blank" rel="noopener noreferrer">
-            <time class="news-date">Aug 2026</time>
-            <span class="news-type">Essay</span>
-            <span class="news-text"><strong>AI 的下一场竞争，不是模型能力，而是经验循环</strong><span class="news-summary"> — 关于真实人机交互经验如何被记录、提炼，并重新进入个人或组织的学习循环。</span></span>
-            <span class="news-arrow" aria-hidden="true">↗</span>
-          </a>
-        </div>
-      </div>
-    </section>'''
-
-          if old_section not in text:
-              raise SystemExit('Recent work section target not found')
-          text = text.replace(old_section, new_section, 1)
-          p.write_text(text, encoding='utf-8')
-
-          # script.js
+          if old_section not in text: raise SystemExit('Recent work section target not found')
+          p.write_text(text.replace(old_section, new_section, 1), encoding='utf-8')
           p = Path('script.js')
           text = p.read_text(encoding='utf-8')
           start = text.find("  const writingGrid = document.querySelector('#writing .writing-grid');")
           end = text.find("\n\n  // Both analytics systems share this browser-level opt-out.", start)
-          if start == -1 or end == -1:
-              raise SystemExit('Dynamic recent-work block not found')
-
-          new_block = '''  const newsList = document.querySelector('#news .news-list');
-  if (newsList && !newsList.querySelector('[data-news="organizing-intelligence-over-time"]')) {
-    const entries = [
-      {
-        id: 'organizing-intelligence-over-time',
-        date: 'Sep 2026',
-        type: 'Survey · Position',
-        title: 'Organizing Intelligence Over Time',
-        summary: 'Human–AI collaboration as joint cognitive development.',
-        href: '/organizing-intelligence-over-time.html',
-        external: false
-      },
-      {
-        id: 'harness-learning',
-        date: 'Sep 2026',
-        type: 'Essay',
-        title: 'The Harness Learning Stack',
-        summary: 'A post-training-like stack around environments, trajectories, graders, credit assignment, and harness updates.',
-        href: '/harness-learning.html',
-        external: false
-      },
-      {
-        id: 'awesome-longitudinal-ai-agents',
-        date: 'Sep 2026',
-        type: 'Literature map',
-        title: 'Awesome Longitudinal AI Agents',
-        summary: 'A curated map of research on agents and Human–AI systems that change through accumulated experience.',
-        href: 'https://github.com/KevinCL16/awesome-longitudinal-ai-agents',
-        external: true
-      }
-    ];
-
-    entries.slice().reverse().forEach(function (entry) {
-      const item = document.createElement('a');
-      item.className = 'news-item';
-      item.dataset.news = entry.id;
-      item.href = entry.href;
-      if (entry.external) {
-        item.target = '_blank';
-        item.rel = 'noopener noreferrer';
-      }
-      item.innerHTML = [
-        '<time class="news-date">' + entry.date + '</time>',
-        '<span class="news-type">' + entry.type + '</span>',
-        '<span class="news-text"><strong>' + entry.title + '</strong><span class="news-summary"> — ' + entry.summary + '</span></span>',
-        '<span class="news-arrow" aria-hidden="true">↗</span>'
-      ].join('');
-      newsList.prepend(item);
-    });
-  }'''
-          text = text[:start] + new_block + text[end:]
-          p.write_text(text, encoding='utf-8')
-
-          # styles.css: append compact news styles; old writing styles can remain unused.
+          if start == -1 or end == -1: raise SystemExit('Dynamic recent-work block not found')
+          p.write_text(text[:start] + new_block + text[end:], encoding='utf-8')
           p = Path('styles.css')
           css = p.read_text(encoding='utf-8')
-          marker = '/* Compact professor-style news feed */'
-          if marker not in css:
-              css += '''\n\n/* Compact professor-style news feed */
-.news-heading { margin-bottom: 28px; }
-.news-list { border-top: 1px solid var(--line); }
-.news-item {
-  display: grid;
-  grid-template-columns: 88px 118px minmax(0, 1fr) 18px;
-  gap: 18px;
-  align-items: baseline;
-  padding: 13px 0 14px;
-  border-bottom: 1px solid var(--line);
-  color: var(--ink);
-  transition: color .2s ease, background .2s ease;
-}
-.news-item:hover { color: var(--accent-dark); }
-.news-date {
-  color: var(--faint);
-  font-size: 11px;
-  font-variant-numeric: tabular-nums;
-  text-transform: uppercase;
-  letter-spacing: .05em;
-}
-.news-type {
-  color: var(--accent);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: .07em;
-  text-transform: uppercase;
-}
-.news-text {
-  min-width: 0;
-  font-size: 14px;
-  line-height: 1.45;
-}
-.news-text strong { font-weight: 650; letter-spacing: -.012em; }
-.news-summary { color: var(--muted); font-weight: 400; }
-.news-arrow { color: var(--accent); font-size: 14px; text-align: right; }
-
-@media (max-width: 760px) {
-  .news-heading { margin-bottom: 22px; }
-  .news-item {
-    grid-template-columns: 78px minmax(0, 1fr) 16px;
-    gap: 10px 12px;
-    padding: 14px 0 15px;
-  }
-  .news-type { grid-column: 2; grid-row: 1; }
-  .news-text { grid-column: 1 / 3; grid-row: 2; font-size: 14px; }
-  .news-arrow { grid-column: 3; grid-row: 1 / 3; align-self: center; }
-  .news-summary { display: inline; }
-}
-'''
-              p.write_text(css, encoding='utf-8')
+          if '/* Compact professor-style news feed */' not in css: p.write_text(css + css_add, encoding='utf-8')
           PY
       - name: Commit refactor
         run: |
